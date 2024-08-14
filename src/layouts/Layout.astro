@@ -13,11 +13,15 @@ const { title } = Astro.props;
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital@0;1&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
+		<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.5/build/spline-viewer.js" async></script>
 	</body>
 </html>
 <style is:global>
@@ -31,10 +35,22 @@ const { title } = Astro.props;
 			rgb(var(--accent-light)) 30%,
 			white 60%
 		);
+
+		--purple: #582DFD;
+		--purple-light: #826AED;
+		--white: #EAEAEA;
+		--gradient-purlpe: linear-gradient(180deg, rgba(130,106,237,1) 0%, rgba(88,45,253,1) 100%);
+		--gradient-light-purple: linear-gradient(0deg, rgba(130,106,237,1) 0%, rgba(234,234,234,1) 100%);
+	}
+
+	*{
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background: #060709;
 	}
 	code {
 		font-family:
@@ -46,5 +62,75 @@ const { title } = Astro.props;
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
+	}
+
+	body{
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.montserrat-regular {
+		font-family: "Montserrat", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	.montserrat-bold {
+		font-family: "Montserrat", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 700;
+		font-style: normal;
+	}
+
+	.montserrat-light {
+		font-family: "Montserrat", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 300;
+		font-style: normal;
+	}
+
+	.montserrat-extra-bold {
+		font-family: "Montserrat", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 900;
+		font-style: normal;
+	}
+
+	.montserrat-alternates-regular {
+		font-family: "Montserrat Alternates", sans-serif;
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	.montserrat-alternates-bold {
+		font-family: "Montserrat Alternates", sans-serif;
+		font-weight: 700;
+		font-style: normal;
+	}
+
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+
+	.text-gradient-purple{
+		background-image: var(--gradient-purlpe);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+
+	.text-gradient-light-purple{
+		background-image: var(--gradient-light-purple);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
 	}
 </style>
