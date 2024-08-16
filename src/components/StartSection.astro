@@ -1,65 +1,140 @@
 ---
 
 ---
+<script>
+    // const headerBoxes = document.querySelectorAll('.header-box');
+    // [...headerBoxes].forEach((element: any) => {
+    //     console.log(element);
+    //     element.addEventListener('mouseenter', (e: any) => {
+    //         e.target.classList.add('text-gradient-purple');
+    //     })
+
+    //     element.addEventListener('mouseleave', (e: any) => {
+    //         e.target.classList.remove('text-gradient-purple');
+    //     });
+    // });
+</script>
 <section class="start-section">
     <!-- <div class="image-container">
-        <img src="/src/assets/images/avatar.png" alt="Avatar">
+        <img src="/src/assets/images/avatar2.png" alt="Avatar">
     </div> -->
+    <header class="montserrat-light header">
+        <span class="header-box">about me</span>
+        <div class="header-box">projects</div>
+        <div class="header-box">contact</div>
+    </header>
     <div class="main-text-container">
         <h1 class="montserrat-alternates-bold">Jakub Kroc</h1>
         <h2 class="montserrat-alternates-regular text-gradient-purple">fullstack developer</h2>
     </div>
+    <div class="mouse"></div>
 </section>
 <style>
     .start-section{
         width: 100%;
         display: flex;
-        /* justify-content: flex-end;
-        align-items: flex-end; */
+        justify-content: flex-start;
+        align-items: flex-start;
         flex-direction: column;
-        padding: 2rem 0;
-        border: 1px solid red;
+        padding: 2rem 2rem;
         position: relative;
         height: 100vh;
     }
-    
-    .image-container{
-        width: auto;
-        /* border: 1px solid pink; */
+
+    .header{
         display: flex;
-        justify-content: flex-end;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        row-gap: 1rem;
     }
 
+    .header-box{
+        cursor: pointer;
+        transition: font-size 0.5s ease-out;
+    }
+    .header-box:hover{
+        font-size: 2rem;
+        transition: font-size 0.5s ease-out;
+    }
     .main-text-container{
-        /* width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 0 0 0 20rem; */
         position: absolute;
         top: 60%;
         left: 50%;
         transform: translateY(-50%);
-       
-        z-index: 2;
+        @media(max-width: 480px){
+            width: 100%;
+            position: static;
+            display: flex;
+            flex: 1;
+            transform: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
     }
 
     h1{
         font-size: 6rem;
         color: var(--white);
-        /* margin-bottom: 0.5rem; */
+        @media(max-width: 480px){
+            font-size: 3rem;
+        }
     }
 
     h2{
         font-size: 3rem;
         margin-top: -2.5rem;
+
+        @media(max-width: 480px){
+            font-size: 1.5rem;
+            margin-top: -1rem;
+        }
     }
 
     img{
         width: 200px;
         height: auto;
         z-index: 2;
+    }
+
+    .mouse {
+	width: 20px;
+	height: 40px;
+	border: 1px solid white;
+	border-radius: 60px;
+	position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+        &::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border-radius: 50%;
+            opacity: 1;
+            animation: wheel 2s infinite;
+            -webkit-animation: wheel 2s infinite;
+        }
+    }
+
+    @keyframes wheel {
+        to {
+            opacity: 0;
+            top: 30px;
+        }
+    }
+
+    @-webkit-keyframes wheel {
+        to {
+            opacity: 0;
+            top: 30px;
+        }
     }
 </style>
