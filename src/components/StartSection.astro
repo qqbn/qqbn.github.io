@@ -51,18 +51,36 @@
 
     .header-box{
         cursor: pointer;
-        transition: font-size 0.5s ease-out;
+        transition: 
+        background-image 0.5s,
+        font-size 0.5s ease-out;
     }
     .header-box:hover{
         font-size: 2rem;
         transition: font-size 0.5s ease-out;
+        background-image: var(--gradient-purlpe);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
     }
     .main-text-container{
         position: absolute;
         top: 60%;
         left: 50%;
         transform: translateY(-50%);
-        @media(max-width: 480px){
+
+        @media(max-width: 1024px){
+            width: 100%;
+            position: static;
+            display: flex;
+            flex: 1;
+            transform: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        /* @media(max-width: 480px){
             width: 100%;
             position: static;
             display: flex;
@@ -72,12 +90,16 @@
             align-items: center;
             justify-content: center;
 
-        }
+        } */
     }
 
     h1{
         font-size: 6rem;
         color: var(--white);
+        @media(max-width: 768px){
+            font-size: 4rem;
+        }
+
         @media(max-width: 480px){
             font-size: 3rem;
         }
@@ -86,6 +108,10 @@
     h2{
         font-size: 3rem;
         margin-top: -2.5rem;
+
+        @media(max-width: 768px){
+            font-size: 2rem;
+        }
 
         @media(max-width: 480px){
             font-size: 1.5rem;

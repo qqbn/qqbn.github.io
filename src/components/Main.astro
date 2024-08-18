@@ -1,6 +1,9 @@
 ---
 import StartSection from "./StartSection.astro";
+import AboutSection from "./AboutSection.astro";
 import Background from "../layouts/Background.astro";
+import ImageText from "./ImageText.astro";
+import TechStack from "./TechStack.astro";
 ---
 <main class="montserrat-regular">
     <!-- <h1>Welcome to <span class="text-gradient-purple">Astro</span></h1> -->
@@ -37,15 +40,28 @@ import Background from "../layouts/Background.astro";
     </ul> -->
     <Background>
         <StartSection />
+		<ImageText avatar="/src/assets/images/avatar.png" photoText={true} textHeader="About me" reverse={false}>
+			<p class="montserrat-regular">As a web development enthusiast, I am constantly trying to expand my skills in this area. I really like learning about new technologies and consistently enhance my abilities in developing both front-end and back-end in JavaScript. I approach problems with reason and logic, always seeking the most effective solutions. My professional attitude, reliability, and ability to work under pressure allow me to create web applications that are focused on user needs and stand out from the competition.</p>
+		</ImageText>
+		<ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Experience" reverse={true}>
+			<div class="experience-box">
+				<div class="montserrat-bold experience-name">Lublin University of Technology / Computer Science Engineer</div>
+				<div class="experience-time">October 2018 - February 2022</div>
+			</div>
+			<div>
+				<div class="montserrat-bold experience-name">Ideo sp. z.o.o / Junior Frontend Developer</div>
+				<div class="experience-time">May 2022 - Current</div>
+			</div>
+		</ImageText>
+		<ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Tech stack" reverse={false}>
+			<TechStack />
+		</ImageText>
     </Background>
 </main>
 
 <style>
 	main {
 		margin: auto;
-		/* padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem); */
 		width: 100%;
 		color: white;
 		font-size: 20px;
@@ -78,9 +94,6 @@ import Background from "../layouts/Background.astro";
 		-webkit-text-fill-color: transparent;
 		background-size: 400%;
 		background-position: 0%;
-		/* background: rgb(130,106,237);
-		background: linear-gradient(0deg, rgba(130,106,237,1) 0%, rgba(88,45,253,1) 100%); */
-		/* background-image: linear-gradient(180deg, rgba(130,106,237,1) 0%, rgba(88,45,253,1) 100%); */
 	}
 	.instructions {
 		margin-bottom: 2rem;
@@ -113,5 +126,20 @@ import Background from "../layouts/Background.astro";
         border: 1px solid red;
         width: 100%;
     }
+
+	.experience-box{
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-direction: column;
+		row-gap: 0.5rem;
+	}
+
+
+	.experience-time{
+		font-size: 1rem;
+		color: white;
+	}
+
 
 </style>

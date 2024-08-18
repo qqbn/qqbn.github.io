@@ -1,0 +1,43 @@
+---
+const techStack = [
+    ['HTML','CSS','Javascript','jQuery', 'Typescript'],
+    ['Vue','Nuxt','Vuex','Pinia', 'Vuetify'],
+    ['Node','Express.js','Nest.js','Prisma ORM', 'MySQL'],
+    ['Axios','PHP','Laravel Blade','Astro.js', 'Bootstrap'],
+    ['Git', 'Joi.dev'],
+]
+---
+<div class="tech-stack">
+    <div class="list-wrapper">
+        {techStack.map(arr => (
+            <ul>
+                {arr.map(tech => (
+                    <li>{tech}</li>
+                ))}
+            </ul>
+        ))}
+    </div>
+    <div>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea illum error, minima alias reiciendis eaque magni rem temporibus sapiente similique.
+    </div>
+</div>
+<style>
+    .tech-stack{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        row-gap: 30px;
+    }
+
+    .list-wrapper{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        column-gap: 30px;
+    }
+
+    ul{
+        /* list-style: outside; */
+    }
+</style>

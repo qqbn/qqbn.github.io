@@ -1,0 +1,87 @@
+---
+export interface Props {
+    avatar: string,
+    photoText?: boolean,
+    textHeader: string,
+    reverse?: boolean,
+
+}
+const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
+---
+<section>
+    <div class={`image-text-section ${reverse ? 'image-text-section-reverse' : ''}`}>
+        <div class="photo-box ">
+            <img src={avatar} alt="Avatar" loading="lazy">
+            {photoText && <span class="montserrat-alternates-bold text-gradient-purple">That's me!</span>}
+        </div>
+        <div class="text-box-wrapper">
+            <div class="text-box">
+                <h2 class="montserrat-alternates-bold text-gradient-purple">{textHeader}</h2>
+                <slot />
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .image-text-section{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 2rem 4rem;
+    }
+
+    .image-text-section-reverse{
+        flex-direction: row-reverse;
+    }
+
+    .photo-box{
+        max-width: 400px;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        padding: 2rem 0;
+
+        img{
+            width: 300px;
+            height: auto;
+        }
+
+        span{
+            width: 100%;
+            padding-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .text-box-wrapper{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .text-box{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        max-width: 800px;
+        min-height: 400px;
+        row-gap: 1rem;
+        background: #15171b;
+        padding: 1.5rem 5rem;
+        border-radius: 1rem;
+        color: var(--white);
+
+        h2{
+            font-size: 1.5rem;
+        }
+    }
+</style>
