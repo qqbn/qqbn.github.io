@@ -8,30 +8,45 @@ export interface Props {
 }
 const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
 ---
-<section>
-    <div class={`image-text-section ${reverse ? 'image-text-section-reverse' : ''}`}>
-        <div class="photo-box ">
-            <img src={avatar} alt="Avatar" loading="lazy">
-            {photoText && <span class="montserrat-alternates-bold text-gradient-purple">That's me!</span>}
-        </div>
-        <div class="text-box-wrapper">
-            <div class="text-box">
-                <h2 class="montserrat-alternates-bold text-gradient-purple">{textHeader}</h2>
-                <slot />
-            </div>
+<div class={`image-text-section ${reverse ? 'image-text-section-reverse' : ''}`}>
+    <div class="photo-box ">
+        <img src={avatar} alt="Avatar" loading="lazy">
+        {photoText && <span class="montserrat-alternates-bold text-gradient-purple">That's me!</span>}
+    </div>
+    <div class="text-box-wrapper">
+        <div class="text-box">
+            <h2 class="montserrat-alternates-bold text-gradient-purple">{textHeader}</h2>
+            <slot />
         </div>
     </div>
-</section>
+</div>
 <style>
     .image-text-section{
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         padding: 2rem 4rem;
+        width: 100%;
+
+        @media(max-width: 1024px){
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media(max-width: 768px){
+            padding: 2rem 2rem;
+        }
     }
 
     .image-text-section-reverse{
         flex-direction: row-reverse;
+
+        @media(max-width: 1024px){
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     .photo-box{
@@ -56,6 +71,14 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
             display: flex;
             justify-content: center;
             align-items: center;
+
+            @media(max-width: 1024px){
+                display: none;
+            }
+        }
+
+        @media(max-width: 1024px){
+            padding: 0;
         }
     }
 
@@ -65,6 +88,11 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
         justify-content: center;
         align-items: center;
         padding: 2rem;
+        width: 100%;
+
+        @media(max-width: 1024px){
+            padding: 0;
+        }
     }
 
     .text-box{
@@ -79,9 +107,14 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
         padding: 1.5rem 5rem;
         border-radius: 1rem;
         color: var(--white);
+        width: 100%;
 
         h2{
             font-size: 1.5rem;
+        }
+
+        @media(max-width: 768px){
+            padding: 1.5rem 2rem;
         }
     }
 </style>

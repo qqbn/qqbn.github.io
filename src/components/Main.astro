@@ -40,22 +40,7 @@ import TechStack from "./TechStack.astro";
     </ul> -->
     <Background>
         <StartSection />
-		<ImageText avatar="/src/assets/images/avatar.png" photoText={true} textHeader="About me" reverse={false}>
-			<p class="montserrat-regular">As a web development enthusiast, I am constantly trying to expand my skills in this area. I really like learning about new technologies and consistently enhance my abilities in developing both front-end and back-end in JavaScript. I approach problems with reason and logic, always seeking the most effective solutions. My professional attitude, reliability, and ability to work under pressure allow me to create web applications that are focused on user needs and stand out from the competition.</p>
-		</ImageText>
-		<ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Experience" reverse={true}>
-			<div class="experience-box">
-				<div class="montserrat-bold experience-name">Lublin University of Technology / Computer Science Engineer</div>
-				<div class="experience-time">October 2018 - February 2022</div>
-			</div>
-			<div>
-				<div class="montserrat-bold experience-name">Ideo sp. z.o.o / Junior Frontend Developer</div>
-				<div class="experience-time">May 2022 - Current</div>
-			</div>
-		</ImageText>
-		<ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Tech stack" reverse={false}>
-			<TechStack />
-		</ImageText>
+		<AboutSection />
     </Background>
 </main>
 
@@ -126,20 +111,5 @@ import TechStack from "./TechStack.astro";
         border: 1px solid red;
         width: 100%;
     }
-
-	.experience-box{
-		display: flex;
-		justify-content: flex-start;
-		align-items: flex-start;
-		flex-direction: column;
-		row-gap: 0.5rem;
-	}
-
-
-	.experience-time{
-		font-size: 1rem;
-		color: white;
-	}
-
 
 </style>

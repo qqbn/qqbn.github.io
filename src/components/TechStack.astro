@@ -10,9 +10,9 @@ const techStack = [
 <div class="tech-stack">
     <div class="list-wrapper">
         {techStack.map(arr => (
-            <ul>
+            <ul class="tech-list">
                 {arr.map(tech => (
-                    <li>{tech}</li>
+                    <li class="tech-name">{tech}</li>
                 ))}
             </ul>
         ))}
@@ -28,6 +28,7 @@ const techStack = [
         align-items: flex-start;
         flex-direction: column;
         row-gap: 30px;
+        width: 100%;
     }
 
     .list-wrapper{
@@ -35,9 +36,24 @@ const techStack = [
         justify-content: flex-start;
         align-items: flex-start;
         column-gap: 30px;
+        @media(max-width: 1024px){
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        @media(max-width: 768px){
+            flex-wrap: wrap;
+            column-gap: 0;
+        }
     }
 
-    ul{
-        /* list-style: outside; */
+    .tech-list{
+        @media(max-width: 768px){
+            width: 50%;
+        }
+    }
+
+    .tech-name{
+
     }
 </style>

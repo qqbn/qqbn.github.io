@@ -1,76 +1,71 @@
 ---
-
+import ImageText from "./ImageText.astro";
+import TechStack from "./TechStack.astro";
 ---
-<section>
-    <div class="about-section">
-        <div class="photo-box ">
-            <img src="/src/assets/images/avatar.png" alt="Avatar" loading="lazy">
-            <span class="montserrat-alternates-bold text-gradient-purple">That's me!</span>
+<section class="about-section">
+    <ImageText avatar="/src/assets/images/avatar.png" photoText={true} textHeader="About me" reverse={false}>
+        <p class="montserrat-regular">As a web development enthusiast, I am constantly trying to expand my skills in this area. I really like learning about new technologies and consistently enhance my abilities in developing both front-end and back-end in JavaScript. I approach problems with reason and logic, always seeking the most effective solutions. My professional attitude, reliability, and ability to work under pressure allow me to create web applications that are focused on user needs and stand out from the competition.</p>
+    </ImageText>
+    <ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Experience" reverse={true}>
+        <div class="experience-box">
+            <div class="montserrat-bold experience-name experience-name">
+                <span>Computer Science Engineer</span>
+                <span class="divider">/</span>
+                <span>Lublin University of Technology</span></div>
+            <div class="experience-time">October 2018 - February 2022</div>
         </div>
-        <div class="text-box-wrapper">
-            <div class="text-box">
-                <h2 class="montserrat-alternates-bold text-gradient-purple">About me</h2>
-                <p>As a web development enthusiast, I am constantly trying to expand my skills in this area. I really like learning about new technologies and consistently enhance my abilities in developing both front-end and back-end in JavaScript. I approach problems with reason and logic, always seeking the most effective solutions. My professional attitude, reliability, and ability to work under pressure allow me to create web applications that are focused on user needs and stand out from the competition.</p>
-            </div>
+        <div>
+            <div class="montserrat-bold experience-name">
+                <span>Junior Frontend Developer</span>
+                <span class="divider">/</span>
+                <span>Ideo sp. z.o.o </span></div>
+            <div class="experience-time">May 2022 - Current</div>
         </div>
-    </div>
+    </ImageText>
+    <ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Tech stack" reverse={false}>
+        <TechStack />
+    </ImageText>
 </section>
 <style>
     .about-section{
         display: flex;
         justify-content: flex-start;
-        align-items: flex-start;
-        padding: 2rem 4rem;
+        align-items: center;
+        flex-direction: column;
     }
+    .experience-box{
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-direction: column;
+		row-gap: 0.5rem;
+	}
 
-    .photo-box{
-        max-width: 400px;
-        width: 100%;
-        height: 100%;
-        opacity: 1;
+    .experience-name{
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        flex-direction: column;
-        padding: 2rem 0;
+        column-gap: 10px;
 
-        img{
-            width: 300px;
-            height: auto;
-        }
+        @media(max-width: 768px){
+            flex-direction: column;
 
-        span{
-            /* max-width: 300px; */
-            width: 100%;
-            padding-left: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
+            .divider{
+                display: none;
+            }
+            span{
+                width: 100%;
+            }
 
-    .text-box-wrapper{
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem;
-    }
-
-    .text-box{
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-direction: column;
-        max-width: 800px;
-        row-gap: 1rem;
-        background: #15171b;
-        padding: 1.5rem 5rem;
-        border-radius: 1rem;
-        color: var(--white);
-
-        h2{
-            font-size: 1.5rem;
+            span:last-of-type{
+                font-size: 1rem;
+            }
         }
     }
+
+    .experience-time{
+		font-size: 1rem;
+		color: white;
+	}
+
 </style>
