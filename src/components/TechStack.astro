@@ -1,18 +1,70 @@
 ---
 const techStack = [
-    ['HTML','CSS','Javascript','jQuery', 'Typescript'],
-    ['Vue','Nuxt','Vuex','Pinia', 'Vuetify'],
-    ['Node','Express.js','Nest.js','Prisma ORM', 'MySQL'],
-    ['Axios','PHP','Laravel Blade','Astro.js', 'Bootstrap'],
-    ['Git', 'Joi.dev'],
+    [
+        { "name": "HTML", "icon": "html" },
+        { "name": "CSS", "icon": "css" },
+        { "name": "Javascript", "icon": "javascript" },
+        { "name": "jQuery", "icon": "jquery" },
+        { "name": "Typescript", "icon": "typescript" }
+    ],
+    [
+        { "name": "Vue", "icon": "vue" },
+        { "name": "Nuxt", "icon": "nuxt" },
+        { "name": "Vuex", "icon": null },
+        { "name": "Pinia", "icon": "pinia" },
+        { "name": "Vuetify", "icon": "vuetify" }
+    ],
+    [
+        { "name": "Node", "icon": "node" },
+        { "name": "Express.js", "icon": "express" },
+        { "name": "Nest.js", "icon": "nest" },
+        { "name": "Prisma ORM", "icon": "prisma" },
+        { "name": "MySQL", "icon": "mysql" }
+    ],
+    [
+        { "name": "Axios", "icon": "axios" },
+        { "name": "PHP", "icon": "php" },
+        { "name": "Laravel Blade", "icon": "laravel" },
+        { "name": "Astro.js", "icon": "astro" },
+        { "name": "Bootstrap", "icon": "bootstrap" }
+    ],
+    [
+        { "name": "Git", "icon": "git" },
+        { "name": "Joi.dev", "icon": null }
+    ]
 ]
+
 ---
+<script>
+    const elements = document.querySelectorAll('.tech-name');
+    const img = document.querySelector('.tech-icon');
+    elements.forEach((el: any) => {
+        el.addEventListener('mouseover', function(event: any) {
+            img.style.display = 'block';
+
+            if(el.dataset.icon){
+                img.src=`/src/assets/icons/${el.dataset.icon}-icon.svg`;
+                const offsetX = 5;
+                const offsetY = 5;
+
+                img.style.left = (event.pageX + offsetX) + 'px';
+                img.style.top = (event.pageY + offsetY) + 'px';
+            }else{
+                img.style.display = 'none';
+            }
+        });
+
+        el.addEventListener('mouseout', function() {
+            img.style.display = 'none';
+        });
+    })
+</script>
 <div class="tech-stack">
     <div class="list-wrapper">
         {techStack.map(arr => (
             <ul class="tech-list">
                 {arr.map(tech => (
-                    <li class="tech-name">{tech}</li>
+                    <li class="tech"><span class="tech-name" data-icon={tech.icon}>{tech.name}</span></li>
                 ))}
             </ul>
         ))}
@@ -20,8 +72,9 @@ const techStack = [
     <div>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea illum error, minima alias reiciendis eaque magni rem temporibus sapiente similique.
     </div>
+    <img class="tech-icon" title="Tech icon" src=""/>
 </div>
-<style>
+<style lang="scss">
     .tech-stack{
         display: flex;
         justify-content: flex-start;
@@ -53,7 +106,21 @@ const techStack = [
         }
     }
 
-    .tech-name{
+    .tech{
+        cursor: pointer;
+    }
 
+    .tech-icon{
+        display: none;
+        position: absolute;
+        max-width: 150px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 10px;
     }
 </style>

@@ -1,0 +1,50 @@
+---
+
+---
+<div class="montserrat-bold experience-box">
+    <span class="experience-title">Computer Science Engineer</span>
+    <span class="experience-place">Lublin University of Technology</span>
+    <span class="experience-time">October 2018 - February 2022</span>
+</div>
+<div class="montserrat-bold experience-box">
+    <span class="experience-title">Junior Frontend Developer</span>
+    <span class="experience-place">Ideo sp. z.o.o </span>
+    <span class="experience-time">May 2022 - Current</span>
+</div>
+<style lang="scss">
+    .experience-box{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        border-bottom: 1px solid var(--white);
+        padding-bottom: 1rem;
+
+        .experience-title{
+            font-size: 1.3rem;
+        }
+
+        .experience-place{
+            font-size: 1rem;
+        }
+
+        .experience-time{
+            font-size: 0.8rem;
+        }
+
+        @media(max-width: 768px){
+            flex-direction: column;
+
+            .divider{
+                display: none;
+            }
+            span{
+                width: 100%;
+            }
+
+            span:last-of-type{
+                font-size: 1rem;
+            }
+        }
+    }
+</style>

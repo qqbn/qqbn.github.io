@@ -1,9 +1,8 @@
 ---
 import StartSection from "./StartSection.astro";
 import AboutSection from "./AboutSection.astro";
+import ProjectsSection from "./ProjectsSection.astro";
 import Background from "../layouts/Background.astro";
-import ImageText from "./ImageText.astro";
-import TechStack from "./TechStack.astro";
 ---
 <main class="montserrat-regular">
     <!-- <h1>Welcome to <span class="text-gradient-purple">Astro</span></h1> -->
@@ -42,9 +41,10 @@ import TechStack from "./TechStack.astro";
         <StartSection />
 		<AboutSection />
     </Background>
+	<ProjectsSection />
 </main>
 
-<style>
+<style lang="scss">
 	main {
 		margin: auto;
 		width: 100%;
