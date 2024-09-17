@@ -1,0 +1,72 @@
+---
+
+---
+<div class="project-card">
+    <div class="project-name montserrat-bold">Project Name</div>
+    <div class="counter montserrat-alternates-bold">1</div>
+    <p class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis eveniet, fugiat enim et sequi obcaecati maiores. Dolore dolor veniam dolorum saepe, facilis neque repudiandae in!</p>
+    <div class="links">
+        <a href="google.com" target="_blank"><img src="/src/assets/images/github.png" alt="Github Icon"></a>
+        <a href="google.com" target="_blank"><img src="/src/assets/images/samurai1.png" alt="Samurai Icon"></a>
+    </div>
+</div>
+<style lang="scss" scoped>
+    .project-card{
+        min-height: 600px;
+        height: auto;
+        padding: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        position: relative;
+        border-radius: 1rem;
+        white-space: normal;
+        box-sizing: border-box;
+        flex: 0 0 450px;
+
+        .project-name{
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .content{
+            width: 100%;
+        }
+
+        .counter{
+            height: 75px;
+            width: 75px;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 20px;
+            position: absolute;
+            left: -10px;
+            top: -40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(130,106,237,1) 0%, rgba(88,45,253,1) 100%);;
+            border-radius: 0.5rem;
+        }
+
+
+        .links{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+
+            a{
+                cursor: pointer;
+            }
+
+            img{
+                width: 75px;
+                height: auto;
+            }
+        }
+    }
+</style>

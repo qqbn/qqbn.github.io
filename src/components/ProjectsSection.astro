@@ -1,16 +1,61 @@
 ---
-
+import ProjectCard from "./ProjectCard.astro";
 ---
 <section class="projects-section">
-    <h1>projects</h1>
+    <h2 class="montserrat-alternates-bold text-gradient-purple">Projects</h2>
+    <div class="wrapper" style="margin: 40px;">
+        <p class="montserrat-regular">In my free time, I love to spend time coding and creating new things. Over the years, I have worked on a variety of web applications, each reflecting my passion for innovative design and efficient functionality. From developing user-friendly interfaces to implementing backend systems. Some of them are deployed in the Internet, so you can play with them as much as you want. Also, there's a Github repo link attached to every project, so you can dive into code.</p>
+        <div class="image-box">
+            <img src="/src/assets/images/samurai2.png" alt="Samurai">
+        </div>
+    </div>
+    <div class="cards-wrapper">
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+    </div>
 </section>
-<style>
+<style lang="scss" scoped>
     .projects-section{
         background-color: var(--light-black);
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         flex-direction: column;
+        padding: 2rem 4rem;
+
+        .wrapper{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
+        p{
+            max-width: 600px;
+        }
+
+        img{
+            max-width: 400px;
+            height: auto;
+        }
+    }
+
+    .cards-wrapper{
+        width: 100%;
+        display: flex;
+        overflow: auto;
+        white-space: normal;
+        padding: 40px 20px;
+        gap: 40px;
     }
 </style>

@@ -37,8 +37,10 @@ const techStack = [
 ---
 <script>
     const elements = document.querySelectorAll('.tech-name');
-    const img = document.querySelector('.tech-icon');
-    elements.forEach((el: any) => {
+    const img = document.querySelector<HTMLImageElement>('.tech-icon');
+
+    if(img){
+        elements.forEach((el: any) => {
         el.addEventListener('mouseover', function(event: any) {
             img.style.display = 'block';
 
@@ -57,7 +59,8 @@ const techStack = [
         el.addEventListener('mouseout', function() {
             img.style.display = 'none';
         });
-    })
+        })
+    }
 </script>
 <div class="tech-stack">
     <div class="list-wrapper">
@@ -69,9 +72,9 @@ const techStack = [
             </ul>
         ))}
     </div>
-    <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea illum error, minima alias reiciendis eaque magni rem temporibus sapiente similique.
-    </div>
+    <p class="montserrat-regular">
+        As a passionate JavaScript developer, I specialize in building dynamic, responsive web applications using a diverse set of technologies. My expertise spans both front-end and back-end development with modern frameworks and libraries.
+    </p>
     <img class="tech-icon" title="Tech icon" src=""/>
 </div>
 <style lang="scss">
@@ -122,5 +125,6 @@ const techStack = [
         -webkit-backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.3);
         padding: 10px;
+        transition: background 0.5s;
     }
 </style>
