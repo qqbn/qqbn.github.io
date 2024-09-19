@@ -1,13 +1,20 @@
 ---
-
+interface Props {
+	name: string;
+	desc: string;
+	deploy: string | null;
+    gh: string;
+    index: number;
+}
+const {name, desc, deploy, gh, index} = Astro.props;
 ---
 <div class="project-card">
-    <div class="project-name montserrat-bold">Project Name</div>
-    <div class="counter montserrat-alternates-bold">1</div>
-    <p class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis eveniet, fugiat enim et sequi obcaecati maiores. Dolore dolor veniam dolorum saepe, facilis neque repudiandae in!</p>
+    <div class="project-name montserrat-bold">{name}</div>
+    <div class="counter montserrat-alternates-bold">{index + 1}</div>
+    <p class="content">{desc}</p>
     <div class="links">
-        <a href="google.com" target="_blank"><img src="/src/assets/images/github.png" alt="Github Icon"></a>
-        <a href="google.com" target="_blank"><img src="/src/assets/images/samurai1.png" alt="Samurai Icon"></a>
+        <a href={gh} target="_blank"><img src="/src/assets/images/github.png" alt="Github Icon"></a>
+        <a href={deploy} target="_blank"><img src="/src/assets/images/internet.png" alt="Samurai Icon"></a>
     </div>
 </div>
 <style lang="scss" scoped>
