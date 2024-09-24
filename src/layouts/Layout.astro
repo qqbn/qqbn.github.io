@@ -24,7 +24,9 @@ const { title } = Astro.props;
 		<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.5/build/spline-viewer.js" async></script>
 	</body>
 </html>
-<style is:global>
+<style is:global lang="scss">
+	@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+	@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 	:root {
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;

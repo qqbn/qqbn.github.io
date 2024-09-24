@@ -34,33 +34,32 @@ const techStack = [
     ]
 ]
 
+const icons = [
+    "html", "css", "javascript", "jquery", "typescript",
+    "vue", "nuxt", "pinia", "vuetify",
+    "node", "express", "nest", "prisma", "mysql",
+    "axios", "php", "laravel", "astro", "bootstrap",
+    "git"
+]
 ---
 <script>
-    const elements = document.querySelectorAll('.tech-name');
-    const img = document.querySelector<HTMLImageElement>('.tech-icon');
-
-    if(img){
-        elements.forEach((el: any) => {
-        el.addEventListener('mouseover', function(event: any) {
-            img.style.display = 'block';
-
-            if(el.dataset.icon){
-                img.src=`/src/assets/icons/${el.dataset.icon}-icon.svg`;
-                const offsetX = 5;
-                const offsetY = 5;
-
-                img.style.left = (event.pageX + offsetX) + 'px';
-                img.style.top = (event.pageY + offsetY) + 'px';
-            }else{
-                img.style.display = 'none';
+    import Glide from '@glidejs/glide'
+    const glide = new Glide('.glide',{
+        autoplay: 1000,
+        perView: 4,
+        rewind: true,
+        gap: 15,
+        breakpoints:{
+            768:{
+                perView: 3
+            },
+            480:{
+                perView: 2,
             }
-        });
+       }
+    });
 
-        el.addEventListener('mouseout', function() {
-            img.style.display = 'none';
-        });
-        })
-    }
+    glide.mount();
 </script>
 <div class="tech-stack">
     <div class="list-wrapper">
@@ -75,7 +74,20 @@ const techStack = [
     <p class="montserrat-regular">
         As a passionate JavaScript developer, I specialize in building dynamic, responsive web applications using a diverse set of technologies. My expertise spans both front-end and back-end development with modern frameworks and libraries.
     </p>
-    <img class="tech-icon" title="Tech icon" src=""/>
+    <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            {icons.map(icon => (
+                <li class="glide__slide"><img class="" title="Tech icon" src={`/src/assets/icons/${icon}-icon.svg`} /></li>
+            ))}
+          </ul>
+        </div>
+        <!-- <div class="glide__bullets" data-glide-el="controls[nav]">
+            {icons.map((icon, index) => (
+                <button class="glide__bullet" data-glide-dir={`=${index}`} data-slide={icon}></button>
+            ))}
+        </div> -->
+    </div>
 </div>
 <style lang="scss">
     .tech-stack{
@@ -126,5 +138,28 @@ const techStack = [
         border: 1px solid rgba(255, 255, 255, 0.3);
         padding: 10px;
         transition: background 0.5s;
+    }
+
+    .glide__track{
+        position: relative;
+        padding: 20px 0;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+    }
+    .glide__slide{
+        padding: 20px 10px;
+        display: flex;
+        justify-content: center;
+        background-color: #826AED;
+        border-radius: 8px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        margin: 10px 0;
+
+        img{
+            height: 75px;
+            width: auto;
+        }
     }
 </style>
