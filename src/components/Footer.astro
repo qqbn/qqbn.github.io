@@ -1,13 +1,67 @@
 ---
-
+// const iterations = 3;
+// const divs = Array.from({ length: iterations }, (_, i) => i);
+const images: string[] = ['discord', 'email', 'linkedin'];
 ---
 <footer class="footer montserrat-regular">
-    <h1>footer</h1>
+    <h2 class="montserrat-alternates-bold text-gradient-purple">Contact</h2>
+    <div class="footer-content-wrapper">
+        <p class="montserrat-regular">Below, you'll find various ways to get in touch with me. Simply click on the icon, and you'll be directed to the appropriate platform.</p>
+    
+        <div class="footer-images-wrapper">
+                {images.map((image: string) => (
+                    <div class="image-box">
+                        <img src={`/src/assets/images/${image}.png`} alt="test" />
+                   </div> 
+                ))}
+        </div>
+
+        <p class="montserrat-bold text-gradient-light-purple greetings-text">I look forward to hearing from you soon!</p>
+    </div>
 </footer>
-<style>
+<style lang="scss" scoped>
     .footer{
-        border: 1px solid orange;
+        background-color: var(--light-black);
         width: 100%;
         color: var(--white);
+        padding: 2rem 4rem;
+        display: flex;
+
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        h2{
+            font-size: 2rem;
+        }
+
+        .footer-content-wrapper{ 
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 40px;
+
+            .greetings-text{
+                font-size: 26px;
+            }
+            p{
+                max-width: 800px;
+                font-size: 20px;
+                text-align: center;
+            }
+        }
+
+        .footer-images-wrapper{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            column-gap: 40px;
+            width: 100%;
+        }
+        img{
+            max-width: 300px;
+            height: auto;
+        }
     }
 </style>
