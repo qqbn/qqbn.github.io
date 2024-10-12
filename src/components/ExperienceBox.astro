@@ -1,5 +1,5 @@
 ---
-
+import workExperience from "../content/experience/experience.json"
 ---
 <div class="montserrat-bold experience-box">
     <span class="experience-title">Computer Science Engineer</span>
@@ -11,12 +11,9 @@
     <span class="experience-place">Ideo sp. z.o.o </span>
     <span class="experience-time">May 2022 - Current</span>
     <ul class="list">
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
+        {workExperience.map((experience, index) => (
+            <li>{experience}</li>
+         ))}
     </ul>
 </div>
 <style lang="scss">
@@ -46,6 +43,15 @@
             list-style-type: disc;
             list-style: inside;
             font-size: 1rem;
+
+            li{
+                padding-bottom: 10px;
+            }
+
+            li:last-of-type{
+                margin: 0;
+                padding: 0;
+            }
         }
 
         @media(max-width: 768px){
