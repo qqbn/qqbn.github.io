@@ -47,7 +47,7 @@ const contacts: any =
     
         <div class="contact-section-images-wrapper">
                 {contacts.map((contact: any, index: number) => (
-                    <div class={`image-box image-box${index+1}`}>
+                    <div class={`image-box image-box${index+1}`} data-aos="fade-right">
                         <img src={`/src/assets/images/${contact.image}.png`} alt="test" />
                         <div class="image-box-buttons">
                             <p class="image-box-text">{contact.text}</p>
