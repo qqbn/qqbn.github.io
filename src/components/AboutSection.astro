@@ -2,10 +2,11 @@
 import ImageText from "./ImageText.astro";
 import TechStack from "./TechStack.astro";
 import ExperienceBox from "./ExperienceBox.astro";
+import content from "../content/about/about.json"
 ---
-<section class="about-section">
+<section class="about-section" id="about">
     <ImageText avatar="/src/assets/images/avatar.png" photoText={true} textHeader="About me" reverse={false}>
-        <p class="montserrat-regular">As a web development enthusiast, I am constantly trying to expand my skills in this area. I really like learning about new technologies and consistently enhance my abilities in developing both front-end and back-end in JavaScript. I approach problems with reason and logic, always seeking the most effective solutions. My professional attitude, reliability, and ability to work under pressure allow me to create web applications that are focused on user needs and stand out from the competition.</p>
+        <p class="montserrat-regular">{content.about}</p>
     </ImageText>
     <ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Experience" reverse={true}>
        <ExperienceBox />

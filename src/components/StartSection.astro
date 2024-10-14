@@ -2,23 +2,20 @@
 
 ---
 <script>
-    // const headerBoxes = document.querySelectorAll('.header-box');
-    // [...headerBoxes].forEach((element: any) => {
-    //     console.log(element);
-    //     element.addEventListener('mouseenter', (e: any) => {
-    //         e.target.classList.add('text-gradient-purple');
-    //     })
+    const headerBoxes = document.querySelectorAll('.header-box');
+    headerBoxes.forEach((element: any) => {
+        element.addEventListener('click', (e: any) => {
+            const targetId = e.target.getAttribute('data-target');
+            document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+        })
 
-    //     element.addEventListener('mouseleave', (e: any) => {
-    //         e.target.classList.remove('text-gradient-purple');
-    //     });
-    // });
+    });
 </script>
 <section class="start-section">
     <header class="montserrat-light header">
-        <span class="header-box">about me</span>
-        <div class="header-box">projects</div>
-        <div class="header-box">contact</div>
+        <span class="header-box" data-target="about">about me</span>
+        <div class="header-box" data-target="projects">projects</div>
+        <div class="header-box" data-target="contact">contact</div>
     </header>
     <div class="main-text-container">
         <h1 class="montserrat-alternates-bold">Jakub Kroc</h1>

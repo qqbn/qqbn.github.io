@@ -1,37 +1,5 @@
 ---
-const techStack = [
-    ["HTML", "CSS", "Javascript", "jQuery", "Typescript"],
-    ["Vue", "Nuxt", "Vuex", "Pinia", "Vuetify"],
-    ["Node", "Express.js", "Nest.js", "Prisma ORM", "MySQL"],
-    ["Axios", "PHP", "Laravel Blade", "Astro.js", "Bootstrap"],
-    ["Git", "Joi.dev"]
-]
-
-const technologiesSlider = [
-    { icon: "html", link: "" },
-    { icon: "css", link: "" },
-    { icon: "javascript", link: ""},
-    { icon: "jquery", link: "https://jquery.com/" },
-    { icon: "typescript", link: "https://www.typescriptlang.org/" },
-    { icon: "vue", link: "https://vuejs.org/"},
-    { icon: "nuxt", link: "https://nuxt.com/"},
-    { icon: "pinia", link: "https://pinia.vuejs.org/"},
-    { icon: "vuetify", link: "https://vuetifyjs.com/en/" },
-    { icon: "node", link: "https://nodejs.org/en" },
-    { icon: "express", link: "https://expressjs.com/" },
-    { icon: "nest", link: "https://nestjs.com/"},
-    { icon: "prisma", link: "https://www.prisma.io/orm" },
-    { icon: "mysql", link: "" },
-    { icon: "axios", link: "https://axios-http.com/" },
-    { icon: "php", link: ""},
-    { icon: "laravel", link: "https://laravel.com/docs/11.x/blade" },
-    { icon: "astro", link: "https://astro.build/" },
-    { icon: "bootstrap", link: "https://getbootstrap.com/"},
-    { icon: "git", link: ""}
-];
-
-
-
+import content from "../content/about/techstack.json"
 ---
 <script>
     import Glide from '@glidejs/glide'
@@ -54,7 +22,7 @@ const technologiesSlider = [
 </script>
 <div class="tech-stack">
     <div class="list-wrapper">
-        {techStack.map(arr => (
+        {content.technologies.map(arr => (
             <ul class="tech-list">
                 {arr.map(tech => (
                     <li class="tech"><span class="tech-name">{tech}</span></li>
@@ -68,7 +36,7 @@ const technologiesSlider = [
     <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            {technologiesSlider.map(tech => (
+            {content.technologiesSlider.map(tech => (
                 <li class="glide__slide">
                     <a href={tech.link ? tech.link : ''}>
                         <img class="icon" title="Tech icon" src={`/src/assets/icons/${tech.icon}-icon.svg`} />

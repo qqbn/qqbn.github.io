@@ -1,21 +1,18 @@
 ---
-import workExperience from "../content/experience/experience.json"
+import content from "../content/about/experience.json"
 ---
-<div class="montserrat-bold experience-box">
-    <span class="experience-title">Computer Science Engineer</span>
-    <span class="experience-place">Lublin University of Technology</span>
-    <span class="experience-time">October 2018 - February 2022</span>
-</div>
-<div class="montserrat-bold experience-box">
-    <span class="experience-title">Junior Frontend Developer</span>
-    <span class="experience-place">Ideo sp. z.o.o </span>
-    <span class="experience-time">May 2022 - Current</span>
-    <ul class="list">
-        {workExperience.map((experience, index) => (
-            <li>{experience}</li>
-         ))}
-    </ul>
-</div>
+{content.map((experience) => (
+    <div class="montserrat-bold experience-box">
+        <span class="experience-title">{experience.position}</span>
+        <span class="experience-place">{experience.place}</span>
+        <span class="experience-time">{experience.date}</span>
+        {experience.list && <ul class="list">
+            {experience.list.map((name) => (
+                <li>{name}</li>
+            ))}
+        </ul>}
+    </div>))
+}
 <style lang="scss">
     .experience-box{
         width: 100%;

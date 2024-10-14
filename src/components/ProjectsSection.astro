@@ -1,11 +1,12 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
 import projects from "../content/cards/projects.json"
+import content from "../content/about/projectsinfo.json"
 ---
-<section class="projects-section" data-aos="fade-up">
+<section class="projects-section" data-aos="fade-up" id="projects">
     <h2 class="montserrat-alternates-bold text-gradient-purple">Projects</h2>
     <div class="wrapper">
-        <p class="montserrat-regular">In my free time, I love to spend time coding and creating new things. Over the years, I have worked on a variety of web applications, each reflecting my passion for innovative design and efficient functionality. From developing user-friendly interfaces to implementing backend systems. Some of them are deployed in the Internet, so you can play with them as much as you want. Also, there's a Github repo link attached to every project, so you can dive into code.</p>
+        <p class="montserrat-regular">{content.projects}</p>
         <div class="image-box">
             <img src="/src/assets/images/samurai2.png" alt="Samurai">
         </div>
