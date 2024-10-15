@@ -1,79 +1,79 @@
 [
     {
         "name": "Portofilio",
-        "desc": "Repo of portofolio, you are watching right now",
+        "desc": "My latest project - my fresh portfolio. I created it with ASTRO.JS, GLIDE.JS and AOS.",
         "deploy": null,
         "gh": "https://github.com/qqbn/portfolio-v2"
     },
     {
         "name": "Vue dashboard",
-        "desc": "This app simulates simple dashboard. You can add notes, reminds, expenses, tasks or expenses. I created it with VUE3 composition api, PINIA, VUETIFY and AXIOS at front. I used EXPRESS.JS, JOI.DEV, PRISMA.ORM and MYSQL for my API.",
+        "desc": "This app simulates simple dashboard for your daily duties. You can add notes, reminds, expenses, tasks or expenses. I created it with VUE3 composition api, PINIA, VUETIFY and AXIOS at front. I used EXPRESS.JS, JOI.DEV, PRISMA.ORM and MYSQL for my API.",
         "deploy": null,
         "gh": "https://github.com/qqbn/vue-dashboard"
     },
     {
         "name": "Fitapp",
-        "desc": "This app allow u to note to monitor your daily nutritional value. I made it with NUXT2, VUETIFY and AXIOS at front and EXPRESS.JS to create API and connect it to MYSQL database",
+        "desc": "This app allow you to monitor your daily nutritional values. I made it with NUXT2, VUETIFY and AXIOS at front and EXPRESS.JS to create API and connect it to MYSQL database.",
         "deploy": null,
         "gh": "https://github.com/qqbn/nuxt-fitapp"
     },
     {
         "name": "Frontend challanges",
-        "desc": "Repo where I made some of frontend challanges. I made challanges in vanilla JS to improve skills. Every challange is in separate folder.",
+        "desc": "This project contains some of frontend mini challanges. I made challanges in vanilla Javascript.",
         "deploy": null,
         "gh": "https://github.com/qqbn/frontend-challanges"
     },
     {
         "name": "Old portfolio",
-        "desc": "Code of my first portfolio.",
+        "desc": "This is my first portfolio project. I created it with VUE3 composition api and ANIMEJS.",
         "deploy": "https://jk-frontdev-portfolio.netlify.app/",
         "gh": "https://github.com/qqbn/portfolio"
     },
     {
         "name": "Smart Home Interface",
-        "desc": "This app simulate, interface of smart home. Made with Vue.js(options api), Interact.js and a little bit of TypeScript",
+        "desc": "This app simulate, interface of smart home. Made with VUE2, Interact.js and a little bit of TypeScript",
         "deploy": "https://trusting-bassi-051f94.netlify.app",
         "gh": "https://github.com/qqbn/smart-home-interface"
     },
     {
         "name": "To do app v2",
-        "desc": "So that was my first app, which I made in vue. This is version 2, rebuilded specially for my first server made with express.js. I also added a little bit of SCSS",
+        "desc": "So that was my first app, which I made in VUE2. This is version 2, rebuilded specially for my first EXPRESS.JS app.",
         "deploy": null,
         "gh": "https://github.com/qqbn/todoapp-v2"
     },
     {
         "name": "Express backend",
-        "desc": "My first backend made with express.js. ",
+        "desc": "My first server app made with EXPRESS.JS.",
         "deploy": null,
         "gh": "https://github.com/qqbn/todo-app-express-backend"
     },
     {
         "name": "Calendar app",
-        "desc": "Simple calendar app, where you can add tasks, to every day you want. I did this, without any date/calendar libraries, just Vue.js",
+        "desc": "This app, simulates calendar where you can add tasks, to every day you want. I created it with VUE2, without any calendar libraries.",
         "deploy": "http://calendar-jk23.herokuapp.com/",
         "gh": "https://github.com/qqbn/calendar"
     },
     {
         "name": "NBA stats",
-        "desc": "App for checking historical stats from nba games or single player stats. I made it with Vue.js (Vue router) and FREE API",
+        "desc": "This app allow you to check historical stats from nba games or single player stats. I created it with VUE2 and free basketball api",
         "deploy": "https://nba-stats-jk23.herokuapp.com/",
         "gh": "https://github.com/qqbn/nba-stats"
     },
     {
         "name": "Money Converter",
-        "desc": "One of my first apps, made with Vue.js(options api) and free data currency api. This app allows you to convert currencies",
+        "desc": "This app allows you to convert currencies. I created it with VUE2 and free data currency api.",
         "deploy": "http://money-converter-jk23.herokuapp.com/",
         "gh": "https://github.com/qqbn/money-converter"
     },
     {
         "name": "TIC TAC TOE",
-        "desc": "Everyone knows this game, I made it with vanilla JS.",
+        "desc": "Project of simple game that everyone knows. I created it with JAVASCRIPT.",
         "deploy": null,
         "gh": "https://github.com/qqbn/tictactoe"
     },
     {
         "name": "TODO app",
-        "desc": "My first app, which I made in Vue.js, this app use LocalStorage",
+        "desc": "This project is simple CRUD app, which I created with VUE2",
         "deploy": null,
         "gh": "https://github.com/qqbn/to-do-app"
     },
@@ -85,7 +85,7 @@
     },
     {
         "name": "landing pages",
-        "desc": "Also, you can find a repos with my landing pages, which I made, when I was learning HTML and CSS",
+        "desc": "This repo contains projects of landing pages, which I made, when I was learning HTML and CSS",
         "deploy": null,
         "gh": "https://github.com/qqbn?tab=repositories"
     }

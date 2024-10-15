@@ -14,8 +14,8 @@ const {name, desc, deploy, gh, index} = Astro.props;
     <p class="content">{desc}</p>
     <div class="links">
         <!-- add render conditions -->
-        <a href={gh} target="_blank"><img src="/src/assets/images/github.png" alt="Github Icon"> <span>Github</span></a>
-        <a href={deploy} target="_blank"><img src="/src/assets/images/internet.png" alt="Samurai Icon"><span>Webpage</span></a>
+        <a href={gh} target="_blank"><img src="/src/assets/images/github.png" alt="Github Icon" loading="lazy"> <span>Github</span></a>
+        <a href={deploy} target="_blank"><img src="/src/assets/images/internet.png" alt="Samurai Icon" loading="lazy"><span>Webpage</span></a>
     </div>
 </div>
 <style lang="scss" scoped>
@@ -75,11 +75,23 @@ const {name, desc, deploy, gh, index} = Astro.props;
                 justify-content: center;
                 flex-direction: column;
                 align-items: center;
+                transition: font-size 0.5s ease-out;
+
+                img{
+                    width: 75px;
+                    height: auto;
+                    transition: width 0.5s ease-out;
+                }
             }
 
-            img{
-                width: 75px;
-                height: auto;
+            a:hover{
+                font-size: 24px;
+                transition: font-size 0.5s ease-out;
+
+                img{
+                    width: 85px;
+                    transition: width 0.5s ease-out;
+                }
             }
         }
     }

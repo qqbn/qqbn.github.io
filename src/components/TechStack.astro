@@ -39,7 +39,7 @@ import content from "../content/about/techstack.json"
             {content.technologiesSlider.map(tech => (
                 <li class="glide__slide">
                     <a href={tech.link ? tech.link : ''}>
-                        <img class="icon" title="Tech icon" src={`/src/assets/icons/${tech.icon}-icon.svg`} />
+                        <img class="icon" title="Tech icon" src={`/src/assets/icons/${tech.icon}-icon.svg`} alt="Tech icon" loading="lazy"/>
                     </a>
                 </li>
             ))}

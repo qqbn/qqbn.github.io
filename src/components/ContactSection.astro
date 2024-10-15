@@ -27,15 +27,19 @@ const contacts: any =
     
     btns.forEach(btn => {
         const value = btn.getAttribute('data-copy');
-        if(value){
-            btn.addEventListener('click', () => copyToClipboard(value));
+        const name = btn.getAttribute('data-name');
+        if(value && name){
+            btn.addEventListener('click', () => copyToClipboard(value, name));
         }
     })
 
-    const copyToClipboard = (value: string) => {
+    const copyToClipboard = (value: string, name: string) => {
         navigator.clipboard.writeText(value);
         const tooltip = document.getElementById('tooltip');
-        tooltip?.classList.add('show');
+        if(!tooltip) return;
+
+        tooltip.classList.add('show');
+        tooltip.textContent = `${name} copied to clipboard!`;
         setTimeout(() => tooltip?.classList.remove('show'), 2000);
     };
 </script>
@@ -48,10 +52,10 @@ const contacts: any =
         <div class="contact-section-images-wrapper">
                 {contacts.map((contact: any, index: number) => (
                     <div class={`image-box image-box${index+1}`} data-aos="fade-right">
-                        <img src={`/src/assets/images/${contact.image}.png`} alt="test" />
+                        <img src={`/src/assets/images/${contact.image}.png`} alt={`${contact.image.toUpperCase()} image`} loading="lazy" />
                         <div class="image-box-buttons">
                             <p class="image-box-text">{contact.text}</p>
-                            {contact.copy ? (<button type="button" class="btn montserrat-regular copy-btn" data-copy={contact.copy}>copy</button>) : ('')}
+                            {contact.copy ? (<button type="button" class="btn montserrat-regular copy-btn" data-copy={contact.copy} data-name={contact.image}>copy</button>) : ('')}
                             {contact.link ? <a type="button" class="btn montserrat-regular" href={contact.image==='email' ? `mailto:${contact.link}` : `${contact.link}`} target="_blank">go to</a> : ('')}
                         </div>
                    </div> 
@@ -61,7 +65,7 @@ const contacts: any =
         <p class="montserrat-bold text-gradient-light-purple greetings-text">I look forward to hearing from you soon!</p>
     </div>
 
-    <div id="tooltip" class="tooltip blob">Value copied to clipboard!</div>
+    <div id="tooltip" class="tooltip blob"></div>
 </section>
 <style lang="scss" scoped>
     .contact-section{
