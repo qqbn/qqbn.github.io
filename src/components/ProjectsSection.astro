@@ -11,10 +11,12 @@ import content from "../content/about/projectsinfo.json"
             <img src="/src/assets/images/samurai2.png" alt="Samurai" loading="lazy">
         </div>
     </div>
-    <div class="cards-wrapper">
-        {projects.map((project, index) => (
-           <ProjectCard name={project.name} index={index} desc={project.desc} gh={project.gh} deploy={project.deploy} />
-        ))}
+    <div class="shadow-container">
+        <div class="cards-wrapper">
+            {projects.map((project, index) => (
+                <ProjectCard name={project.name} index={index} desc={project.desc} gh={project.gh} deploy={project.deploy} />
+            ))}
+        </div>
     </div>
 </section>
 <style lang="scss" scoped>
@@ -48,20 +50,12 @@ import content from "../content/about/projectsinfo.json"
             max-width: 400px;
             height: auto;
         }
+    }
 
-        @media(max-width: 1024px){
-            .wrapper{
-                flex-direction: column-reverse;
-
-                p{
-                    max-width: none;
-                }
-            }
-        }
-
-        @media(max-width: 480px){
-            padding: 2rem 10px;
-        }
+    .shadow-container{
+        position: relative;
+        display: flex;
+        width: 100%;
     }
 
     .cards-wrapper{
@@ -71,5 +65,44 @@ import content from "../content/about/projectsinfo.json"
         white-space: normal;
         padding: 40px 20px;
         gap: 40px;
+    }
+
+    .shadow-container::after{
+        content: "";
+        display: block;
+        top: 40px;
+        height: calc(100% - 80px);
+        position: absolute;
+        width: 50px;
+        z-index: 1;
+        right: 0;
+        background: linear-gradient(90deg, rgba(21,23,27,0.1) 0%, rgba(28,31,35,0.5032387955182073) 30%, rgba(25,28,32,0.8225665266106442) 70%, rgba(21,23,27,1) 100%);
+    }
+    
+    @media(max-width: 1024px){
+        .projects-section{
+            .wrapper{
+                flex-direction: column-reverse;
+                p{
+                    max-width: none;
+                    text-align: justify;
+                }
+            }
+        }
+  
+
+    }
+
+    @media(max-width: 480px){
+        .projects-section{
+            padding: 2rem 10px;
+            .wrapper{
+                .image-box{
+                    img{
+                        width: 300px;
+                    }
+                }
+            }
+        }
     }
 </style>

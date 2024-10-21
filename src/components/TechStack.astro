@@ -2,7 +2,8 @@
 import content from "../content/about/techstack.json"
 ---
 <script>
-    import Glide from '@glidejs/glide'
+import Glide from '@glidejs/glide'
+
     const glide = new Glide('.glide',{
         autoplay: 1000,
         perView: 4,
@@ -62,21 +63,6 @@ import content from "../content/about/techstack.json"
         justify-content: flex-start;
         align-items: flex-start;
         column-gap: 30px;
-        @media(max-width: 1024px){
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        @media(max-width: 768px){
-            flex-wrap: wrap;
-            column-gap: 0;
-        }
-    }
-
-    .tech-list{
-        @media(max-width: 768px){
-            width: 50%;
-        }
     }
 
     .tech{
@@ -104,6 +90,7 @@ import content from "../content/about/techstack.json"
         border-top: 2px solid white;
         border-bottom: 2px solid white;
     }
+
     .glide__slide{
         padding: 20px 10px;
         display: flex;
@@ -118,6 +105,34 @@ import content from "../content/about/techstack.json"
         img{
             height: 75px;
             width: auto;
+        }
+    }
+
+    @media(max-width: 1024px){
+        .list-wrapper{
+            flex-wrap: wrap;
+            width: 100%;
+        }
+    }
+
+    @media(max-width: 768px){
+        .list-wrapper{
+            flex-wrap: wrap;
+            column-gap: 0;
+        }
+
+        .tech-list{
+            width: 50%;
+        }
+    }
+
+    
+
+    @media(max-width: 480px){
+        .tech-stack{
+            p{
+                text-align: justify;
+            }
         }
     }
 </style>

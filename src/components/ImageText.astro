@@ -19,37 +19,17 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
         </div>
     </div>
 </div>
-<style lang="scss">
+<style lang="scss" scoped>
     .image-text-section{
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         padding: 2rem 4rem;
         width: 100%;
-
-        @media(max-width: 1024px){
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media(max-width: 768px){
-            padding: 2rem 2rem;
-        }
-
-        @media(max-width: 480px){
-            padding: 2rem 10px;
-        }
     }
 
     .image-text-section-reverse{
         flex-direction: row-reverse;
-
-        @media(max-width: 1024px){
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
     }
 
     .photo-box{
@@ -74,14 +54,6 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
             display: flex;
             justify-content: center;
             align-items: center;
-
-            @media(max-width: 1024px){
-                display: none;
-            }
-        }
-
-        @media(max-width: 1024px){
-            padding: 0;
         }
     }
 
@@ -92,10 +64,6 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
         align-items: center;
         padding: 0 2rem;
         width: 100%;
-
-        @media(max-width: 1024px){
-            padding: 0;
-        }
     }
 
     .text-box{
@@ -115,9 +83,53 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
         h2{
             font-size: 1.5rem;
         }
+    }
 
-        @media(max-width: 768px){
+    @media(max-width: 1024px){
+        .image-text-section{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-text-section-reverse{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-box{
+            padding: 0;
+            span{
+                display: none;
+            }
+        }
+
+        .text-box-wrapper{
+            padding: 0;
+        }
+    
+
+    }
+
+    @media(max-width: 768px){
+        .image-text-section{
+            padding: 2rem 2rem;
+        }
+
+        .text-box{
             padding: 1.5rem 2rem;
+        }
+
+    }
+
+    @media(max-width: 480px){
+        .image-text-section{
+            padding: 2rem 0;
+        }
+
+        .text-box{
+            text-align: justify;
         }
     }
 </style>

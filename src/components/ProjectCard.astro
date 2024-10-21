@@ -94,5 +94,18 @@ const {name, desc, deploy, gh, index} = Astro.props;
                 }
             }
         }
+
+        @media(max-width: 480px){
+            flex: 0 0 350px;
+            min-height: 450px;
+
+            .project-name{
+                font-size: 20px;
+            }
+
+            .content{
+                font-size: 14px;
+            }
+        }
     }
 </style>
