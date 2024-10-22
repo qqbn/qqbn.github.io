@@ -13,9 +13,15 @@ const {name, desc, deploy, gh, index} = Astro.props;
     <div class="counter montserrat-alternates-bold">{index + 1}</div>
     <p class="content">{desc}</p>
     <div class="links">
-        <!-- add render conditions -->
-        <a href={gh} target="_blank"><img src="/src/assets/images/github.png" alt="Github Icon" loading="lazy"> <span>Github</span></a>
-        <a href={deploy} target="_blank"><img src="/src/assets/images/internet.png" alt="Samurai Icon" loading="lazy"><span>Webpage</span></a>
+        {gh ? <a href={gh} target="_blank">
+            <img src="/src/assets/images/github.png" alt="Github Icon" loading="lazy" />
+            <span>Github</span>
+        </a> : ('')}
+        {deploy ? 
+         <a href={deploy} target="_blank">
+            <img src="/src/assets/images/internet.png" alt="Samurai Icon" loading="lazy" />
+            <span>Webpage</span>
+        </a> : ('')}
     </div>
 </div>
 <style lang="scss" scoped>
@@ -94,8 +100,10 @@ const {name, desc, deploy, gh, index} = Astro.props;
                 }
             }
         }
+    }
 
-        @media(max-width: 480px){
+    @media(max-width: 480px){
+        .project-card{
             flex: 0 0 350px;
             min-height: 450px;
 
