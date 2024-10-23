@@ -39,9 +39,9 @@ import Glide from '@glidejs/glide'
           <ul class="glide__slides">
             {content.technologiesSlider.map(tech => (
                 <li class="glide__slide">
-                    <a href={tech.link ? tech.link : ''}>
+                    {tech.link ? <a href={tech.link ? tech.link : '#'}>
                         <img class="icon" title="Tech icon" src={`/src/assets/icons/${tech.icon}-icon.svg`} alt="Tech icon" loading="lazy"/>
-                    </a>
+                    </a> : <div><img class="icon" title="Tech icon" src={`/src/assets/icons/${tech.icon}-icon.svg`} alt="Tech icon" loading="lazy"/></div>}
                 </li>
             ))}
           </ul>
