@@ -28,5 +28,6 @@
         { "icon": "astro", "link": "https://astro.build/" },
         { "icon": "bootstrap", "link": "https://getbootstrap.com/"},
         { "icon": "git", "link": ""}
-    ]
+    ],
+    "info": "As a passionate JavaScript developer, I specialize in building dynamic, responsive web applications using a wide range of technologies. My expertise covers both front-end and back-end development, utilizing modern frameworks and libraries."
 }
