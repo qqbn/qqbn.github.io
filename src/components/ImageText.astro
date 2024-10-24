@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 export interface Props {
-    avatar: string,
+    avatar: ImageMetadata,
     photoText?: boolean,
     textHeader: string,
     reverse?: boolean,
@@ -9,7 +11,7 @@ const {avatar, photoText, textHeader, reverse} = Astro.props as Props;
 ---
 <div class={`image-text-section ${reverse ? 'image-text-section-reverse' : ''}`}>
     {avatar && <div class="photo-box " data-aos="fade-right">
-        <img src={avatar} alt="Avatar" loading="lazy" />
+        <Image src={avatar} alt="Avatar" />
         {photoText && <span class="montserrat-alternates-bold text-gradient-purple">That's me!</span>}
     </div>}
     <div class="text-box-wrapper" data-aos="fade-right">

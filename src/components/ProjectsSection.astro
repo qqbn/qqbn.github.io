@@ -1,14 +1,16 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
-import projects from "../content/cards/projects.json"
-import content from "../content/about/projectsinfo.json"
+import projects from "../content/cards/projects.json";
+import content from "../content/about/projectsinfo.json";
+import samurai from "../assets/images/samurai2.png";
+import { Image } from 'astro:assets';
 ---
 <section class="projects-section" data-aos="fade-up" id="projects">
     <h2 class="montserrat-alternates-bold text-gradient-purple">Projects</h2>
     <div class="wrapper">
         <p class="montserrat-regular">{content.projects}</p>
         <div class="image-box">
-            <img src="/src/assets/images/samurai2.png" alt="Samurai" loading="lazy">
+            <Image src={samurai} alt="Samurai" />
         </div>
     </div>
     <div class="shadow-container">

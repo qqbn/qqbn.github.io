@@ -1,5 +1,55 @@
 ---
 import content from "../content/about/techstack.json"
+import html from "../assets/icons/html-icon.svg";
+import css from "../assets/icons/css-icon.svg";
+import javascript from "../assets/icons/javascript-icon.svg";
+import jquery from "../assets/icons/jquery-icon.svg";
+import typescript from "../assets/icons/jquery-icon.svg";
+import vue from "../assets/icons/vue-icon.svg";
+import nuxt from "../assets/icons/nuxt-icon.svg";
+import pinia from "../assets/icons/pinia-icon.svg";
+import vuetify from "../assets/icons/vuetify-icon.svg";
+import node from "../assets/icons/node-icon.svg";
+import express from "../assets/icons/express-icon.svg";
+import nest from "../assets/icons/nest-icon.svg";
+import prisma from "../assets/icons/prisma-icon.svg";
+import mysql from "../assets/icons/mysql-icon.svg";
+import axios from "../assets/icons/axios-icon.svg";
+import php from "../assets/icons/php-icon.svg";
+import laravel from "../assets/icons/laravel-icon.svg";
+import astro from "../assets/icons/astro-icon.svg";
+import bootstrap from "../assets/icons/bootstrap-icon.svg";
+import git from "../assets/icons/git-icon.svg";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface slide {
+    icon: ImageMetadata,
+    link: string | null,
+}
+
+const technologiesSlider: slide[] = [
+    { icon: html, link: null },
+    { icon: css, link: null },
+    { icon: javascript, link: null },
+    { icon: jquery, link: 'https://jquery.com/' },
+    { icon: typescript, link: 'https://www.typescriptlang.org/' },
+    { icon: vue, link: 'https://vuejs.org/' },
+    { icon: nuxt, link: 'https://nuxt.com/' },
+    { icon: pinia, link: 'https://pinia.vuejs.org/' },
+    { icon: vuetify, link: 'https://vuetifyjs.com/en/' },
+    { icon: node, link: 'https://nodejs.org/en' },
+    { icon: express, link: 'https://expressjs.com/' },
+    { icon: nest, link: 'https://nestjs.com/' },
+    { icon: prisma, link: 'https://www.prisma.io/orm' },
+    { icon: mysql, link: null },
+    { icon: axios, link: 'https://axios-http.com/' },
+    { icon: php, link: null },
+    { icon: laravel, link: 'https://laravel.com/docs/11.x/blade' },
+    { icon: astro, link: 'https://astro.build/' },
+    { icon: bootstrap, link: 'https://getbootstrap.com/' },
+    { icon: git, link: null }
+];
 ---
 <script>
 import Glide from '@glidejs/glide'
@@ -37,11 +87,17 @@ import Glide from '@glidejs/glide'
     <div class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            {content.technologiesSlider.map(tech => (
+            {technologiesSlider.map(tech => (
                 <li class="glide__slide">
-                    {tech.link ? <a href={tech.link ? tech.link : '#'}>
-                        <img class="icon" title="Tech icon" src={`/src/assets/icons/${tech.icon}-icon.svg`} alt="Tech icon" loading="lazy"/>
-                    </a> : <div><img class="icon" title="Tech icon" src={`/src/assets/icons/${tech.icon}-icon.svg`} alt="Tech icon" loading="lazy"/></div>}
+                    {tech.link ? 
+                        <a href={tech.link ? tech.link : '#'}>
+                            <Image class="icon" title="Tech icon" src={tech.icon} alt="Tech icon" />
+                        </a> 
+                    : 
+                        <div>
+                            <Image class="icon" title="Tech icon" src={tech.icon} alt="Tech icon" />
+                        </div>
+                    }
                 </li>
             ))}
           </ul>

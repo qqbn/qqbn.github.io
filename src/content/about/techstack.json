@@ -7,27 +7,5 @@
         ["Axios", "PHP", "Laravel Blade", "Astro.js", "Bootstrap"],
         ["Git", "Joi.dev"]
     ],
-    "technologiesSlider":     [
-        { "icon": "html", "link": "" },
-        { "icon": "css", "link": "" },
-        { "icon": "javascript", "link": ""},
-        { "icon": "jquery", "link": "https://jquery.com/" },
-        { "icon": "typescript", "link": "https://www.typescriptlang.org/" },
-        { "icon": "vue", "link": "https://vuejs.org/"},
-        { "icon": "nuxt", "link": "https://nuxt.com/"},
-        { "icon": "pinia", "link": "https://pinia.vuejs.org/"},
-        { "icon": "vuetify", "link": "https://vuetifyjs.com/en/" },
-        { "icon": "node", "link": "https://nodejs.org/en" },
-        { "icon": "express", "link": "https://expressjs.com/" },
-        { "icon": "nest", "link": "https://nestjs.com/"},
-        { "icon": "prisma", "link": "https://www.prisma.io/orm" },
-        { "icon": "mysql", "link": "" },
-        { "icon": "axios", "link": "https://axios-http.com/" },
-        { "icon": "php", "link": ""},
-        { "icon": "laravel", "link": "https://laravel.com/docs/11.x/blade" },
-        { "icon": "astro", "link": "https://astro.build/" },
-        { "icon": "bootstrap", "link": "https://getbootstrap.com/"},
-        { "icon": "git", "link": ""}
-    ],
     "info": "As a passionate JavaScript developer, I specialize in building dynamic, responsive web applications using a wide range of technologies. My expertise covers both front-end and back-end development, utilizing modern frameworks and libraries."
 }

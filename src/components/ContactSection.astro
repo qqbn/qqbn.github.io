@@ -1,26 +1,39 @@
 ---
-const contacts: any = 
+import { Image } from 'astro:assets';
+import discord from '../assets/images/discord.png'
+import email from '../assets/images/email.png'
+import linkedin from '../assets/images/linkedin.png'
+import type { ImageMetadata } from 'astro';
+
+const contacts: Contact[] = 
     [
         {
-            image: 'discord',
+            image: discord,
             copy: 'qqbn_',
             link: null,
             text: 'Hit me up on Discord!'
 
         }, 
         {
-            image: 'email',
+            image: email,
             copy: 'jkfrontdev@gmail.com',
             link:  'jkfrontdev@gmail.com',
             text: 'Reach out via email!',
         }, 
         {
-            image: 'linkedin',
+            image: linkedin,
             copy: null,
             link: 'https://www.linkedin.com/in/jkfrontdev/',
             text: 'Check me out on LinkedIn!'
         }
     ];
+
+interface Contact {
+    image: ImageMetadata,
+    copy: string | null,
+    link: string | null,
+    text: string,
+}
 ---
 <script>
     const btns = document.querySelectorAll('.copy-btn');
@@ -52,7 +65,7 @@ const contacts: any =
         <div class="contact-section-images-wrapper">
                 {contacts.map((contact: any, index: number) => (
                     <div class={`image-box image-box${index+1}`} data-aos="fade-right">
-                        <img src={`/src/assets/images/${contact.image}.png`} alt={`${contact.image.toUpperCase()} image`} loading="lazy" />
+                        <Image src={contact.image} alt="Contact" />
                         <div class="image-box-buttons">
                             <p class="image-box-text">{contact.text}</p>
                             {contact.copy ? (<button type="button" class="btn montserrat-regular copy-btn" data-copy={contact.copy} data-name={contact.image}>copy</button>) : ('')}

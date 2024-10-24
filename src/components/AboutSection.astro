@@ -3,15 +3,18 @@ import ImageText from "./ImageText.astro";
 import TechStack from "./TechStack.astro";
 import ExperienceBox from "./ExperienceBox.astro";
 import content from "../content/about/about.json"
+import avatar1 from "../assets/images/avatar.png"
+import avatar2 from "../assets/images/avatar2.png"
+import avatar3 from "../assets/images/avatar3.png"
 ---
 <section class="about-section" id="about">
-    <ImageText avatar="/src/assets/images/avatar.png" photoText={true} textHeader="About me" reverse={false}>
+    <ImageText avatar={avatar1} photoText={true} textHeader="About me" reverse={false}>
         <p class="montserrat-regular">{content.about}</p>
     </ImageText>
-    <ImageText avatar="/src/assets/images/avatar2.png" photoText={false} textHeader="Experience" reverse={true}>
+    <ImageText avatar={avatar2} photoText={false} textHeader="Experience" reverse={true}>
        <ExperienceBox />
     </ImageText>
-    <ImageText avatar="/src/assets/images/avatar3.png" photoText={false} textHeader="Tech stack" reverse={false}>
+    <ImageText avatar={avatar3} photoText={false} textHeader="Tech stack" reverse={false}>
         <TechStack />
     </ImageText>
 </section>
