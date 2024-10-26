@@ -2,7 +2,7 @@
 import content from "../content/about/experience.json"
 ---
 {content.map((experience) => (
-    <div class="montserrat-bold experience-box">
+    <div class="montserrat-regular experience-box">
         <span class="experience-title">{experience.position}</span>
         <span class="experience-place">{experience.place}</span>
         <span class="experience-time">{experience.date}</span>
@@ -40,6 +40,7 @@ import content from "../content/about/experience.json"
             list-style-type: disc;
             list-style: inside;
             font-size: 1rem;
+            color: var(--white);
 
             li{
                 padding-bottom: 10px;

@@ -11,7 +11,8 @@ const contacts: Contact[] =
             image: discord,
             copy: 'qqbn_',
             link: null,
-            text: 'Hit me up on Discord!'
+            text: 'Hit me up on Discord!',
+            name: 'Discord',
 
         }, 
         {
@@ -19,12 +20,14 @@ const contacts: Contact[] =
             copy: 'jkfrontdev@gmail.com',
             link:  'jkfrontdev@gmail.com',
             text: 'Reach out via email!',
+            name: 'Email',
         }, 
         {
             image: linkedin,
             copy: null,
             link: 'https://www.linkedin.com/in/jkfrontdev/',
-            text: 'Check me out on LinkedIn!'
+            text: 'Check me out on LinkedIn!',
+            name: 'Linkedin',
         }
     ];
 
@@ -33,6 +36,7 @@ interface Contact {
     copy: string | null,
     link: string | null,
     text: string,
+    name: string,
 }
 ---
 <script>
@@ -68,7 +72,7 @@ interface Contact {
                         <Image src={contact.image} alt="Contact" />
                         <div class="image-box-buttons">
                             <p class="image-box-text">{contact.text}</p>
-                            {contact.copy ? (<button type="button" class="btn montserrat-regular copy-btn" data-copy={contact.copy} data-name={contact.image}>copy</button>) : ('')}
+                            {contact.copy ? (<button type="button" class="btn montserrat-regular copy-btn" data-copy={contact.copy} data-name={contact.name}>copy</button>) : ('')}
                             {contact.link ? <a type="button" class="btn montserrat-regular" href={contact.image==='email' ? `mailto:${contact.link}` : `${contact.link}`} target="_blank">go to</a> : ('')}
                         </div>
                    </div> 
@@ -102,6 +106,7 @@ interface Contact {
             align-items: center;
             flex-direction: column;
             gap: 40px;
+            color: var(--white);
 
             .greetings-text{
                 font-size: 26px;
@@ -132,6 +137,7 @@ interface Contact {
                 border-radius: 1rem;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
                 gap: 20px;
+                color: var(--white);
 
                 .image-box-buttons{
                     display: flex;
