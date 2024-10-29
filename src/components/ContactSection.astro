@@ -73,7 +73,7 @@ interface Contact {
                         <div class="image-box-buttons">
                             <p class="image-box-text">{contact.text}</p>
                             {contact.copy ? (<button type="button" class="btn montserrat-regular copy-btn" data-copy={contact.copy} data-name={contact.name}>copy</button>) : ('')}
-                            {contact.link ? <a type="button" class="btn montserrat-regular" href={contact.image==='email' ? `mailto:${contact.link}` : `${contact.link}`} target="_blank">go to</a> : ('')}
+                            {contact.link ? <a type="button" class="btn montserrat-regular" href={contact.name==='Email' ? `mailto:${contact.link}` : `${contact.link}`} target="_blank">go to</a> : ('')}
                         </div>
                    </div> 
                 ))}
