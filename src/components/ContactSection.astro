@@ -59,6 +59,12 @@ interface Contact {
         tooltip.textContent = `${name} copied to clipboard!`;
         setTimeout(() => tooltip?.classList.remove('show'), 2000);
     };
+
+    window.addEventListener('beforeunload', () => {
+        btns.forEach(btn => {
+            btn.removeEventListener('click', () => copyToClipboard);
+        })
+    })
 </script>
 
 <section class="contact-section montserrat-regular" id="contact">

@@ -2,13 +2,21 @@
 
 ---
 <script>
-    const headerBoxes = document.querySelectorAll('.header-box');
-    headerBoxes.forEach((element: any) => {
-        element.addEventListener('click', (e: any) => {
-            const targetId = e.target.getAttribute('data-target');
-            document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-        })
+    const headerBoxes = document.querySelectorAll('.header-box')!;
+    const goToSection = (e: Event) => {
+        const targetId = (e.target as HTMLDivElement).getAttribute('data-target')!;
+        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    }
 
+    headerBoxes.forEach((element: any) => {
+        element?.addEventListener('click', goToSection)
+
+    });
+
+    window.addEventListener('beforeunload', () => {
+        headerBoxes.forEach((element: any) => {
+            element.removeEventListener('mousedown', goToSection);
+        })
     });
 </script>
 <section class="start-section">

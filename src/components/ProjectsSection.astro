@@ -5,6 +5,45 @@ import content from "../content/about/projectsinfo.json";
 import samurai from "../assets/images/samurai2.png";
 import { Image } from 'astro:assets';
 ---
+<script>
+    const wrapper: HTMLElement = document?.querySelector('.cards-wrapper')!;
+    let isScrolling: boolean = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    const stopScrolling = () => {
+        isScrolling=false;
+        wrapper.classList.remove('no-select');
+    }
+
+    const startScrolling = (e: MouseEvent) => {
+        isScrolling = true;
+        startX = e.pageX - wrapper?.offsetLeft;
+        scrollLeft = wrapper?.scrollLeft;
+        wrapper.classList.add('no-select');
+    }
+
+    const scroll = (e: MouseEvent) => {
+        if (!isScrolling) return;
+        e.preventDefault();
+        const x = e.pageX - wrapper.offsetLeft;
+        const walk = (x - startX) * 1;
+        wrapper.scrollLeft = scrollLeft - walk;
+    }
+
+    wrapper?.addEventListener('mousedown', startScrolling);
+    wrapper?.addEventListener('mouseleave', stopScrolling);
+    wrapper?.addEventListener('mouseup', stopScrolling);
+    wrapper?.addEventListener('mousemove', scroll);
+
+    window.addEventListener('beforeunload', () => {
+        wrapper.removeEventListener('mousedown', startScrolling);
+        wrapper.removeEventListener('mouseleave', stopScrolling);
+        wrapper.removeEventListener('mouseup', stopScrolling);
+        wrapper.removeEventListener('mousemove', scroll);
+    })
+
+</script>
 <section class="projects-section" data-aos="fade-up" id="projects">
     <h2 class="montserrat-alternates-bold text-gradient-purple">Projects</h2>
     <div class="wrapper">
@@ -70,6 +109,10 @@ import { Image } from 'astro:assets';
         gap: 40px;
     }
 
+    .cards-wrapper:hover{
+        cursor: grab;
+    }
+
     .shadow-container::after{
         content: "";
         display: block;
@@ -80,6 +123,11 @@ import { Image } from 'astro:assets';
         z-index: 1;
         right: 0;
         background: linear-gradient(90deg, rgba(21,23,27,0.1) 0%, rgba(28,31,35,0.5032387955182073) 30%, rgba(25,28,32,0.8225665266106442) 70%, rgba(21,23,27,1) 100%);
+    }
+
+    .no-select{
+        user-select: none;
+        cursor: grab;
     }
     
     @media(max-width: 1024px){
