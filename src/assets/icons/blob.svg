@@ -1,0 +1,39 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blob-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2D31FA">
+        <animate attributeName="stop-color"
+                 values="#2D31FA; #5B35E3; #2D31FA"
+                 dur="2s"
+                 repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#9C19E0">
+        <animate attributeName="stop-color"
+                 values="#9C19E0; #7B2CE9; #9C19E0"
+                 dur="2s"
+                 repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Główny blob -->
+  <path d="M200,290 Q90,290 90,200 Q90,110 200,110 Q310,110 310,200 Q310,290 200,290"
+        fill="url(#blob-gradient)">
+    <animate attributeName="d"
+             dur="6s"
+             repeatCount="indefinite"
+             values="
+               M180,280 Q60,250 70,180 Q80,80 190,90 Q320,100 330,180 Q340,270 180,280;
+               
+               M220,310 Q120,350 50,220 Q20,120 160,50 Q340,40 350,190 Q360,290 220,310;
+               
+               M200,290 Q40,280 90,150 Q140,20 250,70 Q380,130 310,220 Q240,310 200,290;
+               
+               M150,320 Q30,250 80,130 Q130,10 270,90 Q410,170 330,250 Q250,330 150,320;
+               
+               M180,280 Q60,250 70,180 Q80,80 190,90 Q320,100 330,180 Q340,270 180,280
+             "
+             calcMode="spline"
+             keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1"/>
+  </path>
+</svg>
