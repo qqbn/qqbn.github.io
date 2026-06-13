@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import HeroCanvas from '../components/HeroCanvas.astro';
+import About from '../components/About.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Nav />
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content" data-aos="fade-up">
+          <!-- TODO: uzupełnij imię i nazwisko -->
+          <h1 class="hero__name">Jan Kowalski</h1>
+          <p class="hero__role">Senior Frontend Developer</p>
+          <!-- TODO: uzupełnij tagline -->
+          <p class="hero__tagline">
+            Buduję szybkie, dostępne i dopracowane interfejsy webowe — od pierwszego makietowania
+            po wdrożenie.
+          </p>
+          <a href="#projekty" class="btn">Zobacz projekty</a>
+        </div>
+
+        <div class="hero__visual" data-aos="fade-up" data-aos-delay="150">
+          <HeroCanvas />
+        </div>
+      </div>
+    </section>
+
+    <About />
+    <Projects />
+    <Contact />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(160deg, var(--color-hero-bg-start) 0%, var(--color-hero-bg-end) 100%);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: clamp(2rem, 6vw, 4rem);
+  }
+
+  .hero__name {
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: clamp(3rem, 9vw, 6rem);
+    letter-spacing: -0.02em;
+    color: var(--color-accent-cyan-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero__role {
+    font-family: var(--font-hero);
+    font-weight: 600;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    color: var(--color-hero-text-secondary);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__tagline {
+    max-width: 42ch;
+    font-family: var(--font-hero);
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    color: var(--color-hero-text-primary);
+    margin-bottom: 2rem;
+  }
+
+  .hero__visual {
+    width: 100%;
+    height: clamp(260px, 40vw, 480px);
+  }
+
+  .hero .btn {
+    border-color: var(--color-accent-cyan-dark);
+    color: var(--color-accent-cyan-dark);
+  }
+
+  .hero .btn:hover,
+  .hero .btn:focus-visible {
+    background-color: var(--color-accent-cyan-dark);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero__tagline {
+      margin-inline: auto;
+    }
+
+    .hero__visual {
+      height: clamp(220px, 70vw, 360px);
+      order: -1;
+    }
+  }
+</style>

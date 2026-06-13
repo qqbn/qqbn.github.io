@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Jan Kowalski — Senior Frontend Developer',
+  description = 'Portfolio Senior Frontend Developera — projekty, doświadczenie i stack technologiczny.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href=/jk_favicon.svg />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Google Fonts: Montserrat (headings) + Outfit (hero) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      // Apply the saved theme before first paint to avoid a flash of the wrong theme.
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      import AOS from 'aos';
+      import 'aos/dist/aos.css';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      AOS.init({
+        duration: 700,
+        easing: 'ease-out',
+        once: true,
+        offset: 60,
+        disable: prefersReducedMotion,
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+---
+// TODO: uzupełnij dane kontaktowe
+const channels = [
+  {
+    label: 'Email',
+    value: 'jan.kowalski@example.com',
+    href: 'mailto:jan.kowalski@example.com',
+    icon: 'email',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/jankowalski',
+    href: 'https://linkedin.com/in/jankowalski',
+    icon: 'linkedin',
+  },
+  {
+    label: 'Discord',
+    value: 'jankowalski#1234',
+    href: '#',
+    icon: 'discord',
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  email:
+    '<path fill="currentColor" d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2 .4V6.6l8 5 8-5V5.4l-8 5-8-5zM4 9.1V19h16V9.1l-8 5-8-5z"/>',
+  linkedin:
+    '<path fill="currentColor" d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V9h3v10zM6.5 7.7A1.7 1.7 0 1 1 6.5 4.3a1.7 1.7 0 0 1 0 3.4zM20 19h-3v-4.7c0-1.13-.02-2.58-1.57-2.58-1.57 0-1.81 1.23-1.81 2.5V19h-3V9h2.88v1.37h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59V19z"/>',
+  discord:
+    '<path fill="currentColor" d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52 13.6 13.6 0 0 0-.62 1.27 18.3 18.3 0 0 0-5.62 0 13.6 13.6 0 0 0-.62-1.27 19.8 19.8 0 0 0-4.89 1.52C1.1 8.05.42 11.66.7 15.22a19.9 19.9 0 0 0 5.99 3.04c.24-.33.46-.68.65-1.05a13 13 0 0 1-1.02-.49c.09-.06.17-.13.25-.19a14.2 14.2 0 0 0 12.06 0c.08.06.17.13.25.19-.33.19-.67.36-1.02.49.19.37.41.72.65 1.05a19.9 19.9 0 0 0 5.99-3.04c.34-4.13-.55-7.7-2.18-10.85zM8.68 13.33c-.81 0-1.47-.74-1.47-1.65 0-.91.65-1.65 1.47-1.65.82 0 1.48.75 1.47 1.65 0 .91-.65 1.65-1.47 1.65zm6.64 0c-.81 0-1.47-.74-1.47-1.65 0-.91.65-1.65 1.47-1.65.82 0 1.48.75 1.47 1.65 0 .91-.64 1.65-1.47 1.65z"/>',
+};
+
+const icons: Record<string, string> = Object.fromEntries(
+  Object.entries(iconPaths).map(([key, path]) => [
+    key,
+    `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${path}</svg>`,
+  ])
+);
+---
+
+<section id="kontakt" class="section contact">
+  <div class="container">
+    <h2 class="section-title">Skontaktuj się <span>ze mną</span></h2>
+
+    <p class="contact__text" data-aos="fade-up">
+      Masz pytanie, propozycję współpracy lub po prostu chcesz się przywitać?
+      Śmiało, napisz do mnie jednym z poniższych kanałów.
+    </p>
+
+    <ul class="contact__list">
+      {channels.map((channel, index) => (
+        <li data-aos="fade-up" data-aos-delay={index * 100}>
+          <a
+            href={channel.href}
+            class="contact__link"
+            aria-label={`${channel.label}: ${channel.value}`}
+            target={channel.href.startsWith('http') ? '_blank' : undefined}
+            rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            <span class="contact__icon" set:html={icons[channel.icon]} aria-hidden="true" />
+            <span class="contact__details">
+              <span class="contact__label">{channel.label}</span>
+              <span class="contact__value">{channel.value}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contact__text {
+    max-width: 60ch;
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .contact__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.5rem;
+    max-width: none;
+  }
+
+  .contact__link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 2rem;
+    background-color: var(--color-bg-secondary);
+    border: 1px solid color-mix(in srgb, var(--color-text-primary) 6%, transparent);
+    border-radius: 0.75rem;
+    color: var(--color-text-primary);
+    overflow: hidden;
+    transition: color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .contact__link:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Small always-visible accent bar, brightens on hover */
+  .contact__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    width: 2.5rem;
+    height: 3px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-pink));
+    opacity: 0.85;
+    transition: opacity var(--transition-base), width var(--transition-base);
+  }
+
+  /* Soft cyan-to-pink gradient wash on hover */
+  .contact__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-accent-cyan) 10%, transparent), color-mix(in srgb, var(--color-accent-pink) 10%, transparent));
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+  }
+
+  .contact__link:hover,
+  .contact__link:focus-visible {
+    color: var(--color-accent-cyan);
+    border-color: var(--color-accent-cyan);
+  }
+
+  .contact__link:hover::before,
+  .contact__link:focus-visible::before {
+    opacity: 1;
+    width: 4rem;
+  }
+
+  .contact__link:hover::after,
+  .contact__link:focus-visible::after {
+    opacity: 1;
+  }
+
+  .contact__icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, var(--color-accent-cyan) 12%, transparent);
+    color: var(--color-accent-cyan);
+    transition: background-color var(--transition-base), color var(--transition-base);
+  }
+
+  .contact__link:hover .contact__icon,
+  .contact__link:focus-visible .contact__icon {
+    background-color: color-mix(in srgb, var(--color-accent-cyan) 22%, transparent);
+  }
+
+  .contact__icon :global(svg),
+  .contact__icon :global(path) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .contact__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .contact__label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+
+  .contact__value {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+  }
+</style>

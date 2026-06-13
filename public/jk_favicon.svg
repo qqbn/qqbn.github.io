@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <rect width="160" height="160" rx="28" fill="#1e222b"/>
+  <rect width="160" height="160" rx="28" fill="none" stroke="#08d9d6" stroke-width="2" opacity="0.25"/>
+  <text x="80" y="48" text-anchor="middle" font-family="Montserrat, monospace" font-size="18" font-weight="700" fill="#ff2e63">&lt;</text>
+  <text x="80" y="48" text-anchor="middle" font-family="Montserrat, monospace" font-size="18" font-weight="700" fill="#08d9d6" dx="18">/</text>
+  <text x="80" y="48" text-anchor="middle" font-family="Montserrat, monospace" font-size="18" font-weight="700" fill="#ff2e63" dx="36">&gt;</text>
+  <text x="80" y="116" text-anchor="middle" font-family="Montserrat, system-ui, sans-serif" font-size="60" font-weight="700" fill="#eaeaea" letter-spacing="-2">JK</text>
+  <line x1="20" y1="128" x2="68" y2="128" stroke="#ff2e63" stroke-width="1.5" opacity="0.7"/>
+  <line x1="92" y1="128" x2="140" y2="128" stroke="#08d9d6" stroke-width="1.5" opacity="0.7"/>
+  <text x="80" y="148" text-anchor="middle" font-family="Montserrat, system-ui, sans-serif" font-size="9" font-weight="600" fill="#696969" letter-spacing="4">DEV</text>
+</svg>
