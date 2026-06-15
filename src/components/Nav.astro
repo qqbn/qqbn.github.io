@@ -13,10 +13,10 @@ const links = [
         <a href={link.href} class="float-nav__link">{link.label}</a>
       </li>
     ))}
+    {/* Theme toggle temporarily disabled - keeping default colors for now
     <li class="float-nav__item float-nav__item--1">
       <button
         class="float-nav__link theme-toggle"
-        id="theme-toggle"
         type="button"
         aria-label="Przełącz motyw jasny/ciemny"
       >
@@ -34,7 +34,71 @@ const links = [
         </svg>
       </button>
     </li>
+    */}
   </ul>
+
+  <button
+    class="nav-trigger"
+    id="nav-trigger"
+    type="button"
+    aria-label="Otwórz menu nawigacji"
+    aria-expanded="false"
+    aria-controls="mobile-nav-sheet"
+  >
+    <span class="nav-trigger__icon" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <div class="nav-sheet" id="mobile-nav-sheet">
+    <div class="nav-sheet__handle" aria-hidden="true"></div>
+    <button class="nav-sheet__close" id="nav-close" type="button" aria-label="Zamknij menu">
+      <svg
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M6 6l12 12"></path>
+        <path d="M18 6 6 18"></path>
+      </svg>
+    </button>
+    <ul class="nav-sheet__list">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="nav-sheet__link">{link.label}</a>
+        </li>
+      ))}
+      {/* Theme toggle temporarily disabled - keeping default colors for now
+      <li>
+        <button class="nav-sheet__link theme-toggle" type="button" aria-label="Przełącz motyw jasny/ciemny">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M12 4a1 1 0 0 1-1-1V1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1zm0 19a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1zm9-11a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM1 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1zm17.66-6.66a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 1 1 1.41 1.42l-1.41 1.41a1 1 0 0 1-1.42 0zM3.51 20.49a1 1 0 0 1 0-1.42l1.41-1.41a1 1 0 1 1 1.42 1.41l-1.42 1.42a1 1 0 0 1-1.41 0zm15.56 0a1 1 0 0 1-1.41 0l-1.42-1.42a1 1 0 1 1 1.42-1.41l1.41 1.41a1 1 0 0 1 0 1.42zM4.93 5.93a1 1 0 0 1-1.42 0L2.1 4.51A1 1 0 1 1 3.51 3.1l1.42 1.42a1 1 0 0 1 0 1.41zM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"
+            ></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 13.69 13.7 1 1 0 0 0-.05-1.06z"
+            ></path>
+          </svg>
+          <span>Zmień motyw</span>
+        </button>
+      </li>
+      */}
+    </ul>
+  </div>
 </nav>
 
 <style>
@@ -116,7 +180,7 @@ const links = [
     justify-content: center;
   }
 
-  .theme-toggle::after {
+  .float-nav__link.theme-toggle::after {
     display: none;
   }
 
@@ -154,33 +218,11 @@ const links = [
     80% { transform: translate(2px, -8px) rotate(1.5deg); }
   }
 
-  @media (max-width: 768px) {
-    .float-nav {
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      transform: none;
-      padding: 1.5rem 1.25rem 0.85rem;
-      transition: background-color var(--transition-base), backdrop-filter var(--transition-base);
-    }
-
-    .float-nav.is-scrolled {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom-left-radius: 0.75rem;
-      border-bottom-right-radius: 0.75rem;
-    }
-
-    .float-nav__list {
-      justify-content: space-between;
-      gap: 0;
-    }
-
-    .float-nav__link {
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
+  /* Mobile-only elements, hidden on desktop */
+  .nav-trigger,
+  .nav-backdrop,
+  .nav-sheet {
+    display: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -190,31 +232,228 @@ const links = [
       animation: none;
     }
   }
+
+  @media (max-width: 768px) {
+    .float-nav {
+      position: static;
+      top: auto;
+      left: auto;
+      transform: none;
+      z-index: auto;
+    }
+
+    .float-nav__list {
+      display: none;
+    }
+
+    .nav-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 56px;
+      border: none;
+      border-radius: 50%;
+      background: var(--color-accent-cyan-dark);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      z-index: 300;
+      transition: transform var(--transition-base), background-color var(--transition-base);
+    }
+
+    .nav-trigger:active {
+      transform: translateX(-50%) scale(0.94);
+    }
+
+    .float-nav.is-open .nav-trigger {
+      display: none;
+    }
+
+    .nav-trigger__icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 22px;
+      height: 16px;
+    }
+
+    .nav-trigger__icon span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transform-origin: center;
+      transition: transform var(--transition-base), opacity var(--transition-base);
+    }
+
+    .float-nav.is-open .nav-trigger__icon span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .float-nav.is-open .nav-trigger__icon span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .float-nav.is-open .nav-trigger__icon span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-base);
+      z-index: 200;
+    }
+
+    .float-nav.is-open .nav-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-sheet {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: 50vh;
+      background: #1e222b;
+      color: #eaeaea;
+      border-radius: 1.25rem 1.25rem 0 0;
+      padding: 0.5rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom));
+      box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.35);
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 250;
+      overflow-y: auto;
+    }
+
+    .float-nav.is-open .nav-sheet {
+      transform: translateY(0);
+    }
+
+    .nav-sheet__handle {
+      width: 40px;
+      height: 4px;
+      margin: 0.6rem auto 1rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.25);
+      flex-shrink: 0;
+    }
+
+    .nav-sheet__close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #eaeaea;
+      cursor: pointer;
+      transition: background-color var(--transition-base), color var(--transition-base);
+    }
+
+    .nav-sheet__close:hover,
+    .nav-sheet__close:focus-visible {
+      background: rgba(255, 255, 255, 0.16);
+      color: var(--color-accent-cyan);
+    }
+
+    .nav-sheet__list {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-sheet__link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.95rem 0.25rem;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: transparent;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #eaeaea;
+      text-align: left;
+      cursor: pointer;
+      transition: color var(--transition-base);
+    }
+
+    .nav-sheet__list li:last-child .nav-sheet__link {
+      border-bottom: none;
+    }
+
+    .nav-sheet__link:hover,
+    .nav-sheet__link:focus-visible {
+      color: var(--color-accent-cyan);
+    }
+  }
 </style>
 
 <script>
-  const toggle = document.getElementById('theme-toggle');
-
-  toggle?.addEventListener('click', () => {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-
-    if (isLight) {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-    }
-  });
+  // Theme toggle temporarily disabled - keeping default colors for now
+  // const themeToggles = document.querySelectorAll('.theme-toggle');
+  //
+  // themeToggles.forEach((toggle) => {
+  //   toggle.addEventListener('click', () => {
+  //     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  //
+  //     if (isLight) {
+  //       document.documentElement.removeAttribute('data-theme');
+  //       localStorage.setItem('theme', 'dark');
+  //     } else {
+  //       document.documentElement.setAttribute('data-theme', 'light');
+  //       localStorage.setItem('theme', 'light');
+  //     }
+  //   });
+  // });
 
   const floatNav = document.querySelector('.float-nav');
+  const navTrigger = document.getElementById('nav-trigger');
+  const navBackdrop = document.getElementById('nav-backdrop');
+  const navSheet = document.getElementById('mobile-nav-sheet');
 
-  if (floatNav) {
-    const updateScrolled = () => {
-      floatNav.classList.toggle('is-scrolled', window.scrollY > 10);
+  if (floatNav && navTrigger && navBackdrop && navSheet) {
+    const setOpen = (open: boolean) => {
+      floatNav.classList.toggle('is-open', open);
+      navTrigger.setAttribute('aria-expanded', String(open));
     };
 
-    updateScrolled();
-    window.addEventListener('scroll', updateScrolled, { passive: true });
+    navTrigger.addEventListener('click', () => {
+      setOpen(!floatNav.classList.contains('is-open'));
+    });
+
+    navBackdrop.addEventListener('click', () => setOpen(false));
+
+    navSheet.querySelectorAll('a, button').forEach((el) => {
+      el.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
   }
 </script>

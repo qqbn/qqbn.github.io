@@ -6,9 +6,11 @@ dist/
 
 # dependencies
 node_modules/
+.agents/
 
 # logs
 npm-debug.log*
+skills-lock.json
 
 # environment variables
 .env
