@@ -1,0 +1,22 @@
+[
+  { "name": "HTML", "short": "HTML", "icon": "html" },
+  { "name": "CSS", "short": "CSS", "icon": "css" },
+  { "name": "JavaScript", "short": "JS", "icon": "javascript" },
+  { "name": "TypeScript", "short": "TS", "icon": "typescript" },
+  { "name": "jQuery", "short": "jQ", "icon": "jquery" },
+  { "name": "Vue.js", "short": "Vue", "icon": "vue" },
+  { "name": "Nuxt.js", "short": "Nuxt", "icon": "nuxt" },
+  { "name": "Pinia", "short": "Pi", "icon": "pinia" },
+  { "name": "Vuetify", "short": "Vy", "icon": "vuetify" },
+  { "name": "Bootstrap", "short": "BS", "icon": "bootstrap" },
+  { "name": "Astro.js", "short": "AS", "icon": "astro" },
+  { "name": "Node.js", "short": "No", "icon": "node" },
+  { "name": "Express.js", "short": "Ex", "icon": "express" },
+  { "name": "NestJS", "short": "Ne", "icon": "nest" },
+  { "name": "Laravel", "short": "La", "icon": "laravel" },
+  { "name": "PHP", "short": "PHP", "icon": "php" },
+  { "name": "MySQL", "short": "My", "icon": "mysql" },
+  { "name": "Prisma", "short": "Pr", "icon": "prisma" },
+  { "name": "Axios", "short": "Ax", "icon": "axios" },
+  { "name": "Git", "short": "Git", "icon": "git" }
+]

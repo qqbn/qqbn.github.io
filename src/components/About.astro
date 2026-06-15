@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import avatar1 from '../assets/avatar.png';
+import experience from '../data/experience.json';
+import marqueeTech from '../data/tech-marquee.json';
+import stack from '../data/stack.json';
 
 // Drop PNG/SVG/WebP logos into src/assets/tech-icons/ named after the `icon` slug below
 // (e.g. src/assets/tech-icons/html-icon.svg or html.png) to replace the monogram fallback in the marquee.
@@ -17,90 +20,6 @@ function getTechIcon(slug: string) {
   return entry?.[1]?.default;
 }
 
-const experience = [
-  {
-    role: 'Senior Frontend Developer',
-    company: 'Acme Corp',
-    period: '2022 – obecnie',
-    // TODO: uzupełnij opis obowiązków
-    description:
-      'Odpowiadam za architekturę frontendu, mentoring zespołu oraz wdrażanie dobrych praktyk w zakresie wydajności i dostępności.',
-  },
-  {
-    role: 'Frontend Developer',
-    company: 'TechStudio Sp. z o.o.',
-    period: '2019 – 2022',
-    // TODO: uzupełnij opis obowiązków
-    description:
-      'Tworzyłem i utrzymywałem aplikacje webowe w Vue.js, współpracując z zespołem backendowym i UX/UI.',
-  },
-  {
-    role: 'Junior Frontend Developer',
-    company: 'WebAgency',
-    period: '2017 – 2019',
-    // TODO: uzupełnij opis obowiązków
-    description:
-      'Implementowałem makiety graficzne w HTML/CSS/JS oraz wspierałem starszych developerów w codziennych zadaniach.',
-  },
-];
-
-// Curated subset for the decorative infinite-scroll marquee below the stack groups
-const marqueeTech = [
-  { name: 'HTML', short: 'HTML', icon: 'html' },
-  { name: 'CSS', short: 'CSS', icon: 'css' },
-  { name: 'JavaScript', short: 'JS', icon: 'javascript' },
-  { name: 'TypeScript', short: 'TS', icon: 'typescript' },
-  { name: 'jQuery', short: 'jQ', icon: 'jquery' },
-  { name: 'Vue.js', short: 'Vue', icon: 'vue' },
-  { name: 'Nuxt.js', short: 'Nuxt', icon: 'nuxt' },
-  { name: 'Pinia', short: 'Pi', icon: 'pinia' },
-  { name: 'Vuetify', short: 'Vy', icon: 'vuetify' },
-  { name: 'Bootstrap', short: 'BS', icon: 'bootstrap' },
-  { name: 'Astro.js', short: 'AS', icon: 'astro' },
-  { name: 'Node.js', short: 'No', icon: 'node' },
-  { name: 'Express.js', short: 'Ex', icon: 'express' },
-  { name: 'NestJS', short: 'Ne', icon: 'nest' },
-  { name: 'Laravel', short: 'La', icon: 'laravel' },
-  { name: 'PHP', short: 'PHP', icon: 'php' },
-  { name: 'MySQL', short: 'My', icon: 'mysql' },
-  { name: 'Prisma', short: 'Pr', icon: 'prisma' },
-  { name: 'Axios', short: 'Ax', icon: 'axios' },
-  { name: 'Git', short: 'Git', icon: 'git' },
-];
-
-const stack = [
-  {
-    category: 'Fundamenty',
-    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'jQuery', 'Tailwind CSS'],
-  },
-  {
-    category: 'Frameworki Frontend',
-    items: [
-      'Vue.js (Vue 2/3)',
-      'Nuxt.js',
-      'Vuex',
-      'Pinia',
-      'Vuetify',
-      'React',
-      'Next.js',
-      'Astro.js',
-      'Shadcn/ui',
-      'Bootstrap',
-    ],
-  },
-  {
-    category: 'Backend & Bazy danych',
-    items: ['Express.js', 'NestJS', 'PHP', 'Laravel', 'MySQL', 'PostgreSQL', 'SQLite', 'Prisma'],
-  },
-  {
-    category: 'Testowanie & Narzędzia',
-    items: ['Jest', 'Vitest', 'Unit Testing', 'Axios', 'FormKit', 'Joi.dev'],
-  },
-  {
-    category: 'DevOps & Środowisko',
-    items: ['Git', 'Webpack', 'Vite', 'CI/CD', 'GitHub Actions', 'Docker'],
-  },
-];
 ---
 
 <section id="o-mnie" class="section about">
@@ -129,11 +48,15 @@ const stack = [
           {experience.map((job, index) => (
             <li class="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
               <div class="experience-item-header">
-                <h4 class="experience-item-role">{job.role}</h4>
-                <span class="experience-item-period">{job.period}</span>
+                <h4 class="experience-item-role">{job.position}</h4>
+                <span class="experience-item-period">{job.date}</span>
               </div>
-              <p class="experience-item-company">{job.company}</p>
-              <p class="experience-item-description">{job.description}</p>
+              <p class="experience-item-company">{job.place}</p>
+              <ul class="experience-item-description">
+                {job.list.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>
@@ -322,6 +245,11 @@ const stack = [
   }
 
   .experience-item-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin: 0;
+    padding-left: 1.1rem;
     color: var(--color-text-secondary);
     font-size: 0.95rem;
   }
