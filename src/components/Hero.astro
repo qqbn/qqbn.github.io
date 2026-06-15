@@ -3,20 +3,20 @@ import HeroCanvas from './HeroCanvas.astro';
 ---
 
 <section id="hero" class="hero">
-  <div class="container hero__inner">
-    <div class="hero__content" data-aos="fade-up">
+  <div class="container hero-inner">
+    <div class="hero-content" data-aos="fade-up">
       <!-- TODO: uzupełnij imię i nazwisko -->
-      <h1 class="hero__name">Jan Kowalski</h1>
-      <p class="hero__role">Senior Frontend Developer</p>
+      <h1 class="hero-name">Jan Kowalski</h1>
+      <p class="hero-role">Senior Frontend Developer</p>
       <!-- TODO: uzupełnij tagline -->
-      <p class="hero__tagline">
+      <p class="hero-tagline">
         Buduję szybkie, dostępne i dopracowane interfejsy webowe — od pierwszego makietowania
         po wdrożenie.
       </p>
     </div>
     <div class="mouse"></div>
 
-    <div class="hero__visual" data-aos="fade-up" data-aos-delay="150">
+    <div class="hero-visual" data-aos="fade-up" data-aos-delay="150">
       <HeroCanvas />
     </div>
   </div>
@@ -31,14 +31,14 @@ import HeroCanvas from './HeroCanvas.astro';
     background: linear-gradient(160deg, var(--color-hero-bg-start) 0%, var(--color-hero-bg-end) 100%);
   }
 
-  .hero__inner {
+  .hero-inner {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     align-items: center;
     gap: clamp(2rem, 6vw, 4rem);
   }
 
-  .hero__name {
+  .hero-name {
     font-family: var(--font-hero);
     font-weight: 800;
     font-size: clamp(3rem, 9vw, 6rem);
@@ -47,7 +47,7 @@ import HeroCanvas from './HeroCanvas.astro';
     margin-bottom: 0.5rem;
   }
 
-  .hero__role {
+  .hero-role {
     font-family: var(--font-hero);
     font-weight: 600;
     font-size: clamp(1.25rem, 3vw, 1.75rem);
@@ -55,7 +55,7 @@ import HeroCanvas from './HeroCanvas.astro';
     margin-bottom: 1.25rem;
   }
 
-  .hero__tagline {
+  .hero-tagline {
     max-width: 42ch;
     font-family: var(--font-hero);
     font-size: clamp(1.05rem, 2.2vw, 1.25rem);
@@ -63,7 +63,7 @@ import HeroCanvas from './HeroCanvas.astro';
     margin-bottom: 2rem;
   }
 
-  .hero__visual {
+  .hero-visual {
     width: 100%;
     height: clamp(260px, 40vw, 480px);
   }
@@ -80,16 +80,16 @@ import HeroCanvas from './HeroCanvas.astro';
   }
 
   @media (max-width: 768px) {
-    .hero__inner {
+    .hero-inner {
       grid-template-columns: 1fr;
       text-align: center;
     }
 
-    .hero__tagline {
+    .hero-tagline {
       margin-inline: auto;
     }
 
-    .hero__visual {
+    .hero-visual {
       height: clamp(220px, 70vw, 360px);
       order: -1;
     }

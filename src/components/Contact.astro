@@ -42,25 +42,25 @@ const icons: Record<string, string> = Object.fromEntries(
   <div class="container">
     <h2 class="section-title">Skontaktuj się <span>ze mną</span></h2>
 
-    <p class="contact__text" data-aos="fade-up">
+    <p class="contact-text" data-aos="fade-up">
       Masz pytanie, propozycję współpracy lub po prostu chcesz się przywitać?
       Śmiało, napisz do mnie jednym z poniższych kanałów.
     </p>
 
-    <ul class="contact__list">
+    <ul class="contact-list">
       {channels.map((channel, index) => (
         <li data-aos="fade-up" data-aos-delay={index * 100}>
           <a
             href={channel.href}
-            class="contact__link"
+            class="contact-link"
             aria-label={`${channel.label}: ${channel.value}`}
             target={channel.href.startsWith('http') ? '_blank' : undefined}
             rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           >
-            <span class="contact__icon" set:html={icons[channel.icon]} aria-hidden="true" />
-            <span class="contact__details">
-              <span class="contact__label">{channel.label}</span>
-              <span class="contact__value">{channel.value}</span>
+            <span class="contact-icon" set:html={icons[channel.icon]} aria-hidden="true" />
+            <span class="contact-details">
+              <span class="contact-label">{channel.label}</span>
+              <span class="contact-value">{channel.value}</span>
             </span>
           </a>
         </li>
@@ -70,21 +70,21 @@ const icons: Record<string, string> = Object.fromEntries(
 </section>
 
 <style>
-  .contact__text {
+  .contact-text {
     max-width: 60ch;
     color: var(--color-text-secondary);
     font-size: clamp(1rem, 2vw, 1.15rem);
     margin-bottom: clamp(2rem, 5vw, 3rem);
   }
 
-  .contact__list {
+  .contact-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: 1.5rem;
     max-width: none;
   }
 
-  .contact__link {
+  .contact-link {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -99,12 +99,12 @@ const icons: Record<string, string> = Object.fromEntries(
     transition: color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
   }
 
-  .contact__link:hover {
+  .contact-link:hover {
     transform: translateY(-4px);
   }
 
   /* Small always-visible accent bar, brightens on hover */
-  .contact__link::before {
+  .contact-link::before {
     content: '';
     position: absolute;
     top: 0;
@@ -118,7 +118,7 @@ const icons: Record<string, string> = Object.fromEntries(
   }
 
   /* Soft cyan-to-pink gradient wash on hover */
-  .contact__link::after {
+  .contact-link::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -128,24 +128,24 @@ const icons: Record<string, string> = Object.fromEntries(
     pointer-events: none;
   }
 
-  .contact__link:hover,
-  .contact__link:focus-visible {
+  .contact-link:hover,
+  .contact-link:focus-visible {
     color: var(--color-accent-cyan);
     border-color: var(--color-accent-cyan);
   }
 
-  .contact__link:hover::before,
-  .contact__link:focus-visible::before {
+  .contact-link:hover::before,
+  .contact-link:focus-visible::before {
     opacity: 1;
     width: 4rem;
   }
 
-  .contact__link:hover::after,
-  .contact__link:focus-visible::after {
+  .contact-link:hover::after,
+  .contact-link:focus-visible::after {
     opacity: 1;
   }
 
-  .contact__icon {
+  .contact-icon {
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
@@ -158,30 +158,30 @@ const icons: Record<string, string> = Object.fromEntries(
     transition: background-color var(--transition-base), color var(--transition-base);
   }
 
-  .contact__link:hover .contact__icon,
-  .contact__link:focus-visible .contact__icon {
+  .contact-link:hover .contact-icon,
+  .contact-link:focus-visible .contact-icon {
     background-color: color-mix(in srgb, var(--color-accent-cyan) 22%, transparent);
   }
 
-  .contact__icon :global(svg),
-  .contact__icon :global(path) {
+  .contact-icon :global(svg),
+  .contact-icon :global(path) {
     width: 1.5rem;
     height: 1.5rem;
   }
 
-  .contact__details {
+  .contact-details {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
   }
 
-  .contact__label {
+  .contact-label {
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: 1.15rem;
   }
 
-  .contact__value {
+  .contact-value {
     font-size: 0.95rem;
     color: var(--color-text-secondary);
   }

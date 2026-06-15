@@ -7,16 +7,16 @@ const links = [
 ---
 
 <nav class="float-nav" aria-label="Nawigacja sekcji">
-  <ul class="float-nav__list">
+  <ul class="float-nav-list">
     {links.map((link, index) => (
-      <li class={`float-nav__item float-nav__item--${index % 3}`}>
-        <a href={link.href} class="float-nav__link">{link.label}</a>
+      <li class={`float-nav-item float-nav-item--${index % 3}`}>
+        <a href={link.href} class="float-nav-link">{link.label}</a>
       </li>
     ))}
     {/* Theme toggle temporarily disabled - keeping default colors for now
-    <li class="float-nav__item float-nav__item--1">
+    <li class="float-nav-item float-nav-item--1">
       <button
-        class="float-nav__link theme-toggle"
+        class="float-nav-link theme-toggle"
         type="button"
         aria-label="Przełącz motyw jasny/ciemny"
       >
@@ -45,7 +45,7 @@ const links = [
     aria-expanded="false"
     aria-controls="mobile-nav-sheet"
   >
-    <span class="nav-trigger__icon" aria-hidden="true">
+    <span class="nav-trigger-icon" aria-hidden="true">
       <span></span>
       <span></span>
       <span></span>
@@ -55,8 +55,8 @@ const links = [
   <div class="nav-backdrop" id="nav-backdrop"></div>
 
   <div class="nav-sheet" id="mobile-nav-sheet">
-    <div class="nav-sheet__handle" aria-hidden="true"></div>
-    <button class="nav-sheet__close" id="nav-close" type="button" aria-label="Zamknij menu">
+    <div class="nav-sheet-handle" aria-hidden="true"></div>
+    <button class="nav-sheet-close" id="nav-close" type="button" aria-label="Zamknij menu">
       <svg
         viewBox="0 0 24 24"
         width="20"
@@ -72,15 +72,15 @@ const links = [
         <path d="M18 6 6 18"></path>
       </svg>
     </button>
-    <ul class="nav-sheet__list">
+    <ul class="nav-sheet-list">
       {links.map((link) => (
         <li>
-          <a href={link.href} class="nav-sheet__link">{link.label}</a>
+          <a href={link.href} class="nav-sheet-link">{link.label}</a>
         </li>
       ))}
       {/* Theme toggle temporarily disabled - keeping default colors for now
       <li>
-        <button class="nav-sheet__link theme-toggle" type="button" aria-label="Przełącz motyw jasny/ciemny">
+        <button class="nav-sheet-link theme-toggle" type="button" aria-label="Przełącz motyw jasny/ciemny">
           <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
             <path
               fill="currentColor"
@@ -110,32 +110,32 @@ const links = [
     z-index: 100;
   }
 
-  .float-nav__list {
+  .float-nav-list {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: clamp(2rem, 5vw, 3.5rem);
   }
 
-  .float-nav__item {
+  .float-nav-item {
     display: flex;
   }
 
-  .float-nav__item--0 {
+  .float-nav-item--0 {
     animation: float-a 6s ease-in-out infinite;
   }
 
-  .float-nav__item--1 {
+  .float-nav-item--1 {
     animation: float-b 7s ease-in-out infinite;
     animation-delay: -1.5s;
   }
 
-  .float-nav__item--2 {
+  .float-nav-item--2 {
     animation: float-c 5.5s ease-in-out infinite;
     animation-delay: -3s;
   }
 
-  .float-nav__link {
+  .float-nav-link {
     position: relative;
     display: inline-block;
     padding: 0.4rem 0.6rem;
@@ -146,7 +146,7 @@ const links = [
     transition: color var(--transition-base), transform var(--transition-base);
   }
 
-  .float-nav__link::after {
+  .float-nav-link::after {
     content: '';
     position: absolute;
     left: 0.6rem;
@@ -160,14 +160,14 @@ const links = [
     transition: transform var(--transition-base);
   }
 
-  .float-nav__link:hover,
-  .float-nav__link:focus-visible {
+  .float-nav-link:hover,
+  .float-nav-link:focus-visible {
     color: var(--color-accent-pink);
     transform: translateY(-2px) scale(1.1);
   }
 
-  .float-nav__link:hover::after,
-  .float-nav__link:focus-visible::after {
+  .float-nav-link:hover::after,
+  .float-nav-link:focus-visible::after {
     transform: scaleX(1);
   }
 
@@ -180,7 +180,7 @@ const links = [
     justify-content: center;
   }
 
-  .float-nav__link.theme-toggle::after {
+  .float-nav-link.theme-toggle::after {
     display: none;
   }
 
@@ -226,9 +226,9 @@ const links = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .float-nav__item--0,
-    .float-nav__item--1,
-    .float-nav__item--2 {
+    .float-nav-item--0,
+    .float-nav-item--1,
+    .float-nav-item--2 {
       animation: none;
     }
   }
@@ -242,7 +242,7 @@ const links = [
       z-index: auto;
     }
 
-    .float-nav__list {
+    .float-nav-list {
       display: none;
     }
 
@@ -274,7 +274,7 @@ const links = [
       display: none;
     }
 
-    .nav-trigger__icon {
+    .nav-trigger-icon {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -283,7 +283,7 @@ const links = [
       height: 16px;
     }
 
-    .nav-trigger__icon span {
+    .nav-trigger-icon span {
       display: block;
       width: 100%;
       height: 2px;
@@ -293,15 +293,15 @@ const links = [
       transition: transform var(--transition-base), opacity var(--transition-base);
     }
 
-    .float-nav.is-open .nav-trigger__icon span:nth-child(1) {
+    .float-nav.is-open .nav-trigger-icon span:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
 
-    .float-nav.is-open .nav-trigger__icon span:nth-child(2) {
+    .float-nav.is-open .nav-trigger-icon span:nth-child(2) {
       opacity: 0;
     }
 
-    .float-nav.is-open .nav-trigger__icon span:nth-child(3) {
+    .float-nav.is-open .nav-trigger-icon span:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
     }
 
@@ -344,7 +344,7 @@ const links = [
       transform: translateY(0);
     }
 
-    .nav-sheet__handle {
+    .nav-sheet-handle {
       width: 40px;
       height: 4px;
       margin: 0.6rem auto 1rem;
@@ -353,7 +353,7 @@ const links = [
       flex-shrink: 0;
     }
 
-    .nav-sheet__close {
+    .nav-sheet-close {
       position: absolute;
       top: 0.75rem;
       right: 0.75rem;
@@ -370,13 +370,13 @@ const links = [
       transition: background-color var(--transition-base), color var(--transition-base);
     }
 
-    .nav-sheet__close:hover,
-    .nav-sheet__close:focus-visible {
+    .nav-sheet-close:hover,
+    .nav-sheet-close:focus-visible {
       background: rgba(255, 255, 255, 0.16);
       color: var(--color-accent-cyan);
     }
 
-    .nav-sheet__list {
+    .nav-sheet-list {
       display: flex;
       flex-direction: column;
       list-style: none;
@@ -384,7 +384,7 @@ const links = [
       padding: 0;
     }
 
-    .nav-sheet__link {
+    .nav-sheet-link {
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -402,12 +402,12 @@ const links = [
       transition: color var(--transition-base);
     }
 
-    .nav-sheet__list li:last-child .nav-sheet__link {
+    .nav-sheet-list li:last-child .nav-sheet-link {
       border-bottom: none;
     }
 
-    .nav-sheet__link:hover,
-    .nav-sheet__link:focus-visible {
+    .nav-sheet-link:hover,
+    .nav-sheet-link:focus-visible {
       color: var(--color-accent-cyan);
     }
   }
