@@ -12,4 +12,15 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+const experience = defineCollection({
+  type: 'content',
+  schema: z.object({
+    position: z.string(),
+    place: z.string(),
+    date: z.string(),
+    list: z.array(z.string()),
+    order: z.number(),
+  }),
+});
+
+export const collections = { projects, experience };

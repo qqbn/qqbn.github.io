@@ -1,7 +1,7 @@
 ---
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import avatar1 from '../assets/avatar.png';
-import experience from '../data/experience.json';
 import marqueeTech from '../data/tech-marquee.json';
 import stack from '../data/stack.json';
 
@@ -20,6 +20,8 @@ function getTechIcon(slug: string) {
   return entry?.[1]?.default;
 }
 
+const allExperience = await getCollection('experience');
+const experience = [...allExperience].sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section id="o-mnie" class="section about">
@@ -45,15 +47,15 @@ function getTechIcon(slug: string) {
       <div class="about-experience">
         <h3 class="about-subtitle" data-aos="fade-up">Historia pracy</h3>
         <ul class="experience-list">
-          {experience.map((job, index) => (
+          {experience.map((entry, index) => (
             <li class="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
               <div class="experience-item-header">
-                <h4 class="experience-item-role">{job.position}</h4>
-                <span class="experience-item-period">{job.date}</span>
+                <h4 class="experience-item-role">{entry.data.position}</h4>
+                <span class="experience-item-period">{entry.data.date}</span>
               </div>
-              <p class="experience-item-company">{job.place}</p>
+              <p class="experience-item-company">{entry.data.place}</p>
               <ul class="experience-item-description">
-                {job.list.map((item) => (
+                {entry.data.list.map((item) => (
                   <li>{item}</li>
                 ))}
               </ul>

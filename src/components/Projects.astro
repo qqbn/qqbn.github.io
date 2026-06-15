@@ -469,7 +469,8 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
 
   if (track) {
     const pageCount = track.children.length;
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
+    let isMobile = mobileQuery.matches;
     let currentPage = 0;
     let wheelLocked = false;
 
@@ -532,5 +533,13 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
     );
 
     update();
+
+    mobileQuery.addEventListener('change', (event) => {
+      isMobile = event.matches;
+      if (isMobile) {
+        track.style.transform = '';
+      }
+      update();
+    });
   }
 </script>
