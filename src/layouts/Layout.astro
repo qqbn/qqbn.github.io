@@ -40,8 +40,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <script is:inline>
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+      if (savedTheme !== 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
       }
     </script>
   </head>

@@ -1,20 +1,20 @@
 :root {
-  --color-bg-primary: #f5f5f7;
-  --color-bg-secondary: #ffffff;
+  --color-bg-primary: #1e222b;
+  --color-bg-secondary: #252a34;
   --color-accent-cyan: #08d9d6;
   --color-accent-pink: #ff2e63;
-  --color-text-primary: #1e222b;
-  --color-text-secondary: #5b5f66;
+  --color-text-primary: #eaeaea;
+  --color-text-secondary: #696969;
 
   --font-heading: 'Montserrat', sans-serif;
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-hero: 'Outfit', sans-serif;
 
-  --color-hero-bg-start: #f5f5f7;
-  --color-hero-bg-end: #e4e6eb;
-  --color-hero-text-primary: #1e222b;
-  --color-hero-text-secondary: #5b5f66;
-  --color-accent-cyan-dark: #03a6a3;
+  --color-hero-bg-start: #1e222b;
+  --color-hero-bg-end: #252a34;
+  --color-hero-text-primary: #eaeaea;
+  --color-hero-text-secondary: #696969;
+  --color-accent-cyan-dark: #08d9d6;
 
   --max-width: 1200px;
   --section-padding: clamp(3rem, 8vw, 6rem);
@@ -23,16 +23,12 @@
   --transition-base: 0.2s ease;
 }
 
-:root[data-theme='dark'] {
-  --color-bg-primary: #1e222b;
-  --color-bg-secondary: #252a34;
-  --color-text-primary: #eaeaea;
-  --color-text-secondary: #696969;
-  --color-hero-bg-start: #1e222b;
-  --color-hero-bg-end: #252a34;
-  --color-hero-text-primary: #eaeaea;
-  --color-hero-text-secondary: #696969;
-  --color-accent-cyan-dark: #08d9d6;
+:root[data-theme='light'] {
+  --color-hero-bg-start: #f5f5f7;
+  --color-hero-bg-end: #e4e6eb;
+  --color-hero-text-primary: #1e222b;
+  --color-hero-text-secondary: #5b5f66;
+  --color-accent-cyan-dark: #03a6a3;
 }
 
 *,
