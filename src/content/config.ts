@@ -9,6 +9,7 @@ const projects = defineCollection({
     github: z.string().url(),
     live: z.string().url().optional(),
     featured: z.boolean().default(false),
+    order: z.number(),
   }),
 });
 
@@ -23,4 +24,16 @@ const experience = defineCollection({
   }),
 });
 
-export const collections = { projects, experience };
+const contact = defineCollection({
+  type: 'content',
+  schema: z.object({
+    label: z.string(),
+    value: z.string(),
+    href: z.string(),
+    icon: z.string(),
+    order: z.number(),
+    copyable: z.boolean().default(false),
+  }),
+});
+
+export const collections = { projects, experience, contact };

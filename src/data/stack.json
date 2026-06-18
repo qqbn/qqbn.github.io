@@ -1,10 +1,10 @@
 [
   {
-    "category": "Fundamenty",
+    "category": "Fundamentals",
     "items": ["HTML", "CSS", "JavaScript", "TypeScript", "jQuery", "Tailwind CSS"]
   },
   {
-    "category": "Frameworki Frontend",
+    "category": "Frontend Frameworks",
     "items": [
       "Vue.js (Vue 2/3)",
       "Nuxt.js",
@@ -19,15 +19,15 @@
     ]
   },
   {
-    "category": "Backend & Bazy danych",
+    "category": "Backend & Databases",
     "items": ["Express.js", "NestJS", "PHP", "Laravel", "MySQL", "PostgreSQL", "SQLite", "Prisma"]
   },
   {
-    "category": "Testowanie & Narzędzia",
+    "category": "Testing & Tools",
     "items": ["Jest", "Vitest", "Unit Testing", "Axios", "FormKit", "Joi.dev"]
   },
   {
-    "category": "DevOps & Środowisko",
+    "category": "DevOps & Environment",
     "items": ["Git", "Webpack", "Vite", "CI/CD", "GitHub Actions", "Docker"]
   }
 ]

@@ -5,8 +5,7 @@ import avatar2 from '../assets/avatar2.png';
 
 const allProjects = await getCollection('projects');
 
-// Featured projects first
-const projects = [...allProjects].sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const projects = [...allProjects].sort((a, b) => a.data.order - b.data.order);
 
 const PAGE_SIZE = 4;
 const pages: typeof projects[] = [];
@@ -15,11 +14,11 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
 }
 ---
 
-<section id="projekty" class="section projects">
+<section id="projects" class="section projects">
   <div class="container">
     <div class="projects-heading">
       <div class="projects-intro">
-        <h2 class="section-title">Moje <span>projekty</span></h2>
+        <h2 class="section-title">My <span>projects</span></h2>
         <p class="projects-text">
           A selection of personal and side projects built to explore new technologies, solve real
           problems, and sharpen skills beyond the day-to-day. Each project includes a live demo
@@ -249,7 +248,6 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
     }
   }
 
-  /* Mobile: turn off the page-based slider and let users swipe one card at a time */
   @media (max-width: 768px) {
     .projects-slider {
       gap: 0.5rem;
@@ -324,7 +322,6 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
     transition: border-color var(--transition-base), transform var(--transition-base);
   }
 
-  /* Small always-visible accent bar, brightens on hover */
   .project-card::before {
     content: '';
     position: absolute;
@@ -338,7 +335,6 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
     transition: opacity var(--transition-base), width var(--transition-base);
   }
 
-  /* Soft cyan-to-pink gradient wash on hover */
   .project-card::after {
     content: '';
     position: absolute;
@@ -477,8 +473,6 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
     function update() {
       if (!track) return;
 
-      // On mobile the slider is a native horizontal scroll-snap list (one card per view),
-      // so the page-based transform/dots/arrows are disabled.
       if (isMobile) {
         track.style.transform = '';
         return;
@@ -513,7 +507,6 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
       (event) => {
         if (isMobile || pageCount <= 1) return;
 
-        // Only react to horizontal scroll/swipe gestures - vertical scroll should scroll the page normally.
         if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
         if (Math.abs(event.deltaX) < 10) return;
 

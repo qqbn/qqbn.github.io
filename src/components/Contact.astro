@@ -1,31 +1,16 @@
 ---
-// TODO: uzupełnij dane kontaktowe
-const channels = [
-  {
-    label: 'Email',
-    value: 'jan.kowalski@example.com',
-    href: 'mailto:jan.kowalski@example.com',
-    icon: 'email',
-  },
-  {
-    label: 'LinkedIn',
-    value: 'linkedin.com/in/jankowalski',
-    href: 'https://linkedin.com/in/jankowalski',
-    icon: 'linkedin',
-  },
-  {
-    label: 'Discord',
-    value: 'jankowalski#1234',
-    href: '#',
-    icon: 'discord',
-  },
-];
+import { getCollection } from 'astro:content';
+
+const allChannels = await getCollection('contact');
+const channels = [...allChannels].sort((a, b) => a.data.order - b.data.order);
 
 const iconPaths: Record<string, string> = {
   email:
     '<path fill="currentColor" d="M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm2 .4V6.6l8 5 8-5V5.4l-8 5-8-5zM4 9.1V19h16V9.1l-8 5-8-5z"/>',
   linkedin:
     '<path fill="currentColor" d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V9h3v10zM6.5 7.7A1.7 1.7 0 1 1 6.5 4.3a1.7 1.7 0 0 1 0 3.4zM20 19h-3v-4.7c0-1.13-.02-2.58-1.57-2.58-1.57 0-1.81 1.23-1.81 2.5V19h-3V9h2.88v1.37h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59V19z"/>',
+  github:
+    '<path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.07.78 2.16 0 1.56-.01 2.81-.01 3.19 0 .31.21.66.79.55A10.99 10.99 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>',
   discord:
     '<path fill="currentColor" d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52 13.6 13.6 0 0 0-.62 1.27 18.3 18.3 0 0 0-5.62 0 13.6 13.6 0 0 0-.62-1.27 19.8 19.8 0 0 0-4.89 1.52C1.1 8.05.42 11.66.7 15.22a19.9 19.9 0 0 0 5.99 3.04c.24-.33.46-.68.65-1.05a13 13 0 0 1-1.02-.49c.09-.06.17-.13.25-.19a14.2 14.2 0 0 0 12.06 0c.08.06.17.13.25.19-.33.19-.67.36-1.02.49.19.37.41.72.65 1.05a19.9 19.9 0 0 0 5.99-3.04c.34-4.13-.55-7.7-2.18-10.85zM8.68 13.33c-.81 0-1.47-.74-1.47-1.65 0-.91.65-1.65 1.47-1.65.82 0 1.48.75 1.47 1.65 0 .91-.65 1.65-1.47 1.65zm6.64 0c-.81 0-1.47-.74-1.47-1.65 0-.91.65-1.65 1.47-1.65.82 0 1.48.75 1.47 1.65 0 .91-.64 1.65-1.47 1.65z"/>',
 };
@@ -36,33 +21,53 @@ const icons: Record<string, string> = Object.fromEntries(
     `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${path}</svg>`,
   ])
 );
+
+const copyIcon = `<svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>`;
+const checkIcon = `<svg class="check-icon" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>`;
 ---
 
-<section id="kontakt" class="section contact">
+<section id="contact" class="section contact">
   <div class="container">
-    <h2 class="section-title">Skontaktuj się <span>ze mną</span></h2>
+    <h2 class="section-title">Contact <span>me</span></h2>
 
     <p class="contact-text" data-aos="fade-up">
-      Masz pytanie, propozycję współpracy lub po prostu chcesz się przywitać?
-      Śmiało, napisz do mnie jednym z poniższych kanałów.
+      Below, you'll find various ways to get in touch with me.
     </p>
 
     <ul class="contact-list">
       {channels.map((channel, index) => (
         <li data-aos="fade-up" data-aos-delay={index * 100}>
-          <a
-            href={channel.href}
-            class="contact-link"
-            aria-label={`${channel.label}: ${channel.value}`}
-            target={channel.href.startsWith('http') ? '_blank' : undefined}
-            rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          >
-            <span class="contact-icon" set:html={icons[channel.icon]} aria-hidden="true" />
-            <span class="contact-details">
-              <span class="contact-label">{channel.label}</span>
-              <span class="contact-value">{channel.value}</span>
-            </span>
-          </a>
+          {channel.data.copyable ? (
+            <button
+              class="contact-link contact-link--copyable"
+              type="button"
+              data-copy={channel.data.value}
+              aria-label={`Skopiuj ${channel.data.label}: ${channel.data.value}`}
+            >
+              <span class="contact-icon" set:html={icons[channel.data.icon]} aria-hidden="true" />
+              <span class="contact-details">
+                <span class="contact-label">{channel.data.label}</span>
+                <span class="contact-value">
+                  {channel.data.value}
+                  <span class="contact-copy-hint" set:html={copyIcon + checkIcon} aria-hidden="true" />
+                </span>
+              </span>
+            </button>
+          ) : (
+            <a
+              href={channel.data.href}
+              class="contact-link"
+              aria-label={`${channel.data.label}: ${channel.data.value}`}
+              target={channel.data.href.startsWith('http') ? '_blank' : undefined}
+              rel={channel.data.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              <span class="contact-icon" set:html={icons[channel.data.icon]} aria-hidden="true" />
+              <span class="contact-details">
+                <span class="contact-label">{channel.data.label}</span>
+                <span class="contact-value">{channel.data.value}</span>
+              </span>
+            </a>
+          )}
         </li>
       ))}
     </ul>
@@ -84,6 +89,10 @@ const icons: Record<string, string> = Object.fromEntries(
     max-width: none;
   }
 
+  .contact-list li {
+    display: flex;
+  }
+
   .contact-link {
     position: relative;
     display: flex;
@@ -91,6 +100,8 @@ const icons: Record<string, string> = Object.fromEntries(
     align-items: flex-start;
     gap: 1.25rem;
     padding: 2rem;
+    width: 100%;
+    height: 100%;
     background-color: var(--color-bg-secondary);
     border: 1px solid color-mix(in srgb, var(--color-text-primary) 6%, transparent);
     border-radius: 0.75rem;
@@ -99,11 +110,16 @@ const icons: Record<string, string> = Object.fromEntries(
     transition: color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
   }
 
+  .contact-link--copyable {
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+  }
+
   .contact-link:hover {
     transform: translateY(-4px);
   }
 
-  /* Small always-visible accent bar, brightens on hover */
   .contact-link::before {
     content: '';
     position: absolute;
@@ -117,7 +133,6 @@ const icons: Record<string, string> = Object.fromEntries(
     transition: opacity var(--transition-base), width var(--transition-base);
   }
 
-  /* Soft cyan-to-pink gradient wash on hover */
   .contact-link::after {
     content: '';
     position: absolute;
@@ -182,7 +197,50 @@ const icons: Record<string, string> = Object.fromEntries(
   }
 
   .contact-value {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
     font-size: 0.95rem;
     color: var(--color-text-secondary);
   }
+
+  .contact-copy-hint {
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.5;
+    transition: opacity var(--transition-base);
+  }
+
+  .contact-link:hover .contact-copy-hint,
+  .contact-link:focus-visible .contact-copy-hint {
+    opacity: 1;
+  }
+
+  .contact-copy-hint :global(.check-icon) {
+    display: none;
+    color: var(--color-accent-cyan);
+  }
+
+  .contact-link--copied .contact-copy-hint :global(.copy-icon) {
+    display: none;
+  }
+
+  .contact-link--copied .contact-copy-hint :global(.check-icon) {
+    display: inline;
+  }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.contact-link--copyable').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy;
+      if (!value) return;
+
+      try {
+        await navigator.clipboard.writeText(value);
+        btn.classList.add('contact-link--copied');
+        setTimeout(() => btn.classList.remove('contact-link--copied'), 2000);
+      } catch {}
+    });
+  });
+</script>

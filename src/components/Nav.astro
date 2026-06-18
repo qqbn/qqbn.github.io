@@ -1,8 +1,8 @@
 ---
 const links = [
-  { href: '#o-mnie', label: 'O mnie' },
-  { href: '#projekty', label: 'Projekty' },
-  { href: '#kontakt', label: 'Kontakt' },
+  { href: '#about-me', label: 'About me' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#contact', label: 'Contact' },
 ];
 ---
 
@@ -13,7 +13,6 @@ const links = [
         <a href={link.href} class="float-nav-link">{link.label}</a>
       </li>
     ))}
-    {/* Theme toggle temporarily disabled - keeping default colors for now
     <li class="float-nav-item float-nav-item--1">
       <button
         class="float-nav-link theme-toggle"
@@ -34,7 +33,6 @@ const links = [
         </svg>
       </button>
     </li>
-    */}
   </ul>
 
   <button
@@ -78,7 +76,6 @@ const links = [
           <a href={link.href} class="nav-sheet-link">{link.label}</a>
         </li>
       ))}
-      {/* Theme toggle temporarily disabled - keeping default colors for now
       <li>
         <button class="nav-sheet-link theme-toggle" type="button" aria-label="Przełącz motyw jasny/ciemny">
           <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
@@ -93,10 +90,9 @@ const links = [
               d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 13.69 13.7 1 1 0 0 0-.05-1.06z"
             ></path>
           </svg>
-          <span>Zmień motyw</span>
+          <span>Toggle theme</span>
         </button>
       </li>
-      */}
     </ul>
   </div>
 </nav>
@@ -196,7 +192,6 @@ const links = [
     display: block;
   }
 
-  /* Gentle bubble-like drift - each item follows its own loose orbit */
   @keyframes float-a {
     0%, 100% { transform: translate(0, 0) rotate(0deg); }
     25% { transform: translate(3px, -10px) rotate(1.5deg); }
@@ -218,7 +213,6 @@ const links = [
     80% { transform: translate(2px, -8px) rotate(1.5deg); }
   }
 
-  /* Mobile-only elements, hidden on desktop */
   .nav-trigger,
   .nav-backdrop,
   .nav-sheet {
@@ -329,8 +323,8 @@ const links = [
       right: 0;
       bottom: 0;
       max-height: 50vh;
-      background: #1e222b;
-      color: #eaeaea;
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
       border-radius: 1.25rem 1.25rem 0 0;
       padding: 0.5rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom));
       box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.35);
@@ -349,7 +343,7 @@ const links = [
       height: 4px;
       margin: 0.6rem auto 1rem;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.25);
+      background: color-mix(in srgb, var(--color-text-primary) 25%, transparent);
       flex-shrink: 0;
     }
 
@@ -364,8 +358,8 @@ const links = [
       height: 36px;
       border: none;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: #eaeaea;
+      background: color-mix(in srgb, var(--color-text-primary) 8%, transparent);
+      color: var(--color-text-primary);
       cursor: pointer;
       transition: background-color var(--transition-base), color var(--transition-base);
     }
@@ -391,12 +385,12 @@ const links = [
       width: 100%;
       padding: 0.95rem 0.25rem;
       border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-text-primary) 8%, transparent);
       background: transparent;
       font-family: var(--font-heading);
       font-weight: 600;
       font-size: 1.05rem;
-      color: #eaeaea;
+      color: var(--color-text-primary);
       text-align: left;
       cursor: pointer;
       transition: color var(--transition-base);
@@ -414,22 +408,21 @@ const links = [
 </style>
 
 <script>
-  // Theme toggle temporarily disabled - keeping default colors for now
-  // const themeToggles = document.querySelectorAll('.theme-toggle');
-  //
-  // themeToggles.forEach((toggle) => {
-  //   toggle.addEventListener('click', () => {
-  //     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-  //
-  //     if (isLight) {
-  //       document.documentElement.removeAttribute('data-theme');
-  //       localStorage.setItem('theme', 'dark');
-  //     } else {
-  //       document.documentElement.setAttribute('data-theme', 'light');
-  //       localStorage.setItem('theme', 'light');
-  //     }
-  //   });
-  // });
+  const themeToggles = document.querySelectorAll('.theme-toggle');
+
+  themeToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  });
 
   const floatNav = document.querySelector('.float-nav');
   const navTrigger = document.getElementById('nav-trigger');

@@ -5,8 +5,6 @@ import avatar1 from '../assets/avatar.png';
 import marqueeTech from '../data/tech-marquee.json';
 import stack from '../data/stack.json';
 
-// Drop PNG/SVG/WebP logos into src/assets/tech-icons/ named after the `icon` slug below
-// (e.g. src/assets/tech-icons/html-icon.svg or html.png) to replace the monogram fallback in the marquee.
 const techIconImages = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/tech-icons/*.{png,jpg,jpeg,webp,svg}',
   { eager: true }
@@ -24,28 +22,22 @@ const allExperience = await getCollection('experience');
 const experience = [...allExperience].sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section id="o-mnie" class="section about">
+<section id="about-me" class="section about">
   <div class="about-light">
     <div class="container">
-      <h2 class="section-title">O <span>mnie</span></h2>
-
-      <!-- 3a. O mnie -->
+      <h2 class="section-title">About <span>me</span></h2>
       <div class="about-bio" data-aos="fade-up">
         <div class="about-avatar">
           <Image src={avatar1} alt="Avatar" class="about-avatar-img" width={360} height={360} loading="lazy" />
         </div>
 
-        <!-- TODO: uzupełnij bio -->
         <p>
-          Cześć, jestem Jan Kowalski — Senior Frontend Developer z ponad 8-letnim doświadczeniem
-          w budowaniu nowoczesnych aplikacji webowych. Specjalizuję się w ekosystemie Vue.js i
-          React, dbam o wydajność, dostępność i czysty kod.
+          Frontend Developer with 4+ years of commercial experience, specializing in the Vue.js ecosystem and TypeScript, with working knowledge of React and Next.js. Experienced in building scalable, responsive web applications — from architecture decisions to performance optimization and REST API integration. Known for high attention to code quality, developer experience, and end-user performance across complex, high-traffic products.
         </p>
       </div>
 
-      <!-- 3b. Historia pracy -->
       <div class="about-experience">
-        <h3 class="about-subtitle" data-aos="fade-up">Historia pracy</h3>
+        <h3 class="about-subtitle" data-aos="fade-up">Experience</h3>
         <ul class="experience-list">
           {experience.map((entry, index) => (
             <li class="experience-item" data-aos="fade-up" data-aos-delay={index * 100}>
@@ -67,10 +59,9 @@ const experience = [...allExperience].sort((a, b) => a.data.order - b.data.order
   </div>
 </section>
 
-<!-- 3c. Stack technologiczny -->
 <section id="stack" class="section stack-section">
   <div class="container">
-    <h2 class="section-title">Stack <span>technologiczny</span></h2>
+    <h2 class="section-title">Tech <span>stack</span></h2>
     <div class="about-stack">
       <div class="stack-groups">
         {stack.map((group, index) => (
@@ -121,14 +112,17 @@ const experience = [...allExperience].sort((a, b) => a.data.order - b.data.order
 
   .about-light {
     --color-bg-primary: var(--color-hero-bg-start);
-    --color-bg-secondary: #ffffff;
     --color-text-primary: var(--color-hero-text-primary);
     --color-text-secondary: var(--color-hero-text-secondary);
-    --color-accent-cyan: var(--color-accent-cyan-dark);
-    background-color: var(--color-bg-primary);
+    background-color: var(--color-hero-bg-start);
     background-image: radial-gradient(circle, rgba(3, 166, 163, 0.28) 1.6px, transparent 1.6px);
     background-size: 34px 34px;
     padding-block: var(--section-padding);
+  }
+
+  :global([data-theme='light'] .about-light) {
+    --color-bg-secondary: #ffffff;
+    --color-accent-cyan: var(--color-accent-cyan-dark);
   }
 
   .about-bio {
@@ -206,7 +200,6 @@ const experience = [...allExperience].sort((a, b) => a.data.order - b.data.order
     overflow: hidden;
   }
 
-  /* Soft cyan-to-pink gradient wash fading in from the card's right edge */
   .experience-item::before {
     content: '';
     position: absolute;

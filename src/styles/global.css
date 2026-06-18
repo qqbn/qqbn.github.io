@@ -1,6 +1,4 @@
-/* ===================== Custom properties ===================== */
 :root {
-  /* Colors */
   --color-bg-primary: #1e222b;
   --color-bg-secondary: #252a34;
   --color-accent-cyan: #08d9d6;
@@ -8,36 +6,31 @@
   --color-text-primary: #eaeaea;
   --color-text-secondary: #696969;
 
-  /* Typography */
   --font-heading: 'Montserrat', sans-serif;
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-hero: 'Outfit', sans-serif;
 
-  /* Light hero theme */
+  --color-hero-bg-start: #1e222b;
+  --color-hero-bg-end: #252a34;
+  --color-hero-text-primary: #eaeaea;
+  --color-hero-text-secondary: #696969;
+  --color-accent-cyan-dark: #08d9d6;
+
+  --max-width: 1200px;
+  --section-padding: clamp(3rem, 8vw, 6rem);
+  --scroll-offset: 1.5rem;
+
+  --transition-base: 0.2s ease;
+}
+
+:root[data-theme='light'] {
   --color-hero-bg-start: #f5f5f7;
   --color-hero-bg-end: #e4e6eb;
   --color-hero-text-primary: #1e222b;
   --color-hero-text-secondary: #5b5f66;
   --color-accent-cyan-dark: #03a6a3;
-
-  /* Layout */
-  --max-width: 1200px;
-  --section-padding: clamp(3rem, 8vw, 6rem);
-  --scroll-offset: 1.5rem;
-
-  /* Transitions */
-  --transition-base: 0.2s ease;
 }
 
-/* ===================== Light theme ===================== */
-:root[data-theme='light'] {
-  --color-bg-primary: #f5f5f7;
-  --color-bg-secondary: #ffffff;
-  --color-text-primary: #1e222b;
-  --color-text-secondary: #5b5f66;
-}
-
-/* ===================== Reset ===================== */
 *,
 *::before,
 *::after {
@@ -102,7 +95,6 @@ p {
   margin: 0;
 }
 
-/* ===================== Focus visibility ===================== */
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--color-accent-cyan);
@@ -110,7 +102,6 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-/* ===================== Layout utilities ===================== */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -132,7 +123,6 @@ button:focus-visible {
   color: var(--color-accent-cyan);
 }
 
-/* ===================== Buttons ===================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -156,7 +146,6 @@ button:focus-visible {
   transform: translateY(-2px);
 }
 
-/* ===================== Reduced motion ===================== */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
