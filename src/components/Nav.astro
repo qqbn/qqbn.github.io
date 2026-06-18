@@ -180,15 +180,15 @@ const links = [
     display: none;
   }
 
-  .icon-sun {
+  .icon-moon {
     display: none;
   }
 
-  :global(html[data-theme='dark']) .theme-toggle .icon-moon {
+  :global(html[data-theme='light']) .theme-toggle .icon-sun {
     display: none;
   }
 
-  :global(html[data-theme='dark']) .theme-toggle .icon-sun {
+  :global(html[data-theme='light']) .theme-toggle .icon-moon {
     display: block;
   }
 
@@ -412,14 +412,14 @@ const links = [
 
   themeToggles.forEach((toggle) => {
     toggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
-      if (isDark) {
+      if (isLight) {
         document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
       }
     });
   });
