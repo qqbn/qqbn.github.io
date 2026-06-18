@@ -1,0 +1,328 @@
+---
+---
+
+<div class="hero-canvas-wrapper" aria-hidden="true">
+  <canvas id="hero-canvas"></canvas>
+</div>
+
+<style>
+  .hero-canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    max-width: 640px;
+    max-height: 640px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  // Wireframe sphere on a 2D canvas:
+  // - rotates towards the cursor, auto-rotates when idle
+  // - "energizes" (pulses + spins faster) on hover
+  // - clicking pops off a few bubble-like fragments
+  // - interactive dot grid in the background reacts to the cursor
+
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext('2d');
+
+  if (canvas && ctx) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const EDGE_COLOR = '8, 217, 214'; // --color-accent-cyan as rgb
+    const VERTEX_COLOR = '255, 46, 99'; // --color-accent-pink as rgb
+    const GRID_COLOR = '3, 166, 163'; // --color-accent-cyan-dark as rgb
+
+    // --- Sphere geometry (UV sphere) ---
+    const LAT_BANDS = 8;
+    const LON_BANDS = 14;
+
+    const baseVertices: number[][] = [];
+    for (let lat = 0; lat <= LAT_BANDS; lat++) {
+      const theta = (lat / LAT_BANDS) * Math.PI;
+      for (let lon = 0; lon < LON_BANDS; lon++) {
+        const phi = (lon / LON_BANDS) * Math.PI * 2;
+        baseVertices.push([
+          Math.sin(theta) * Math.cos(phi),
+          Math.cos(theta),
+          Math.sin(theta) * Math.sin(phi),
+        ]);
+      }
+    }
+
+    const sphereEdges: [number, number][] = [];
+    const idx = (lat: number, lon: number) => lat * LON_BANDS + (lon % LON_BANDS);
+    for (let lat = 0; lat <= LAT_BANDS; lat++) {
+      for (let lon = 0; lon < LON_BANDS; lon++) {
+        sphereEdges.push([idx(lat, lon), idx(lat, lon + 1)]);
+        if (lat < LAT_BANDS) sphereEdges.push([idx(lat, lon), idx(lat + 1, lon)]);
+      }
+    }
+
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    // Rotation state
+    let rotX = 0.35;
+    let rotY = -0.5;
+    let targetRotX = rotX;
+    let targetRotY = rotY;
+    let autoRotate = true;
+    let autoRotateSpeed = 0.0035;
+
+    // Pointer / hover state
+    let pointerX: number | null = null;
+    let pointerY: number | null = null;
+    let hoverEnergy = 0; // 0 -> idle, 1 -> fully energized
+
+    // Bubble particles spawned on click
+    interface Bubble {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      life: number;
+      maxLife: number;
+      color: string;
+    }
+    const bubbles: Bubble[] = [];
+
+    // Background grid
+    const GRID_SPACING = 34;
+    const GRID_INFLUENCE = 110;
+    const GRID_MAX_DISPLACEMENT = 16;
+
+    let animationFrame: number;
+    let time = 0;
+
+    function resize() {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+    }
+
+    function project([x, y, z]: number[], scale: number): [number, number, number] {
+      const distance = 4;
+      const factor = distance / (distance + z);
+      const px = x * factor * scale + width / 2;
+      const py = y * factor * scale + height / 2;
+      return [px, py, factor];
+    }
+
+    function rotate([x, y, z]: number[], rx: number, ry: number): number[] {
+      const y1 = y * Math.cos(rx) - z * Math.sin(rx);
+      const z1 = y * Math.sin(rx) + z * Math.cos(rx);
+      const x2 = x * Math.cos(ry) + z1 * Math.sin(ry);
+      const z2 = -x * Math.sin(ry) + z1 * Math.cos(ry);
+      return [x2, y1, z2];
+    }
+
+    function drawGrid() {
+      if (!ctx) return;
+
+      for (let gx = GRID_SPACING / 2; gx < width; gx += GRID_SPACING) {
+        for (let gy = GRID_SPACING / 2; gy < height; gy += GRID_SPACING) {
+          let x = gx;
+          let y = gy;
+
+          if (pointerX !== null && pointerY !== null) {
+            const dx = gx - pointerX;
+            const dy = gy - pointerY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < GRID_INFLUENCE && dist > 0.01) {
+              const strength = (1 - dist / GRID_INFLUENCE) * GRID_MAX_DISPLACEMENT;
+              x += (dx / dist) * strength;
+              y += (dy / dist) * strength;
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(x, y, 1.6, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${GRID_COLOR}, 0.28)`;
+          ctx.fill();
+        }
+      }
+    }
+
+    function drawSphere() {
+      if (!ctx) return;
+
+      const radius = 1 + Math.sin(time * 4) * 0.04 * hoverEnergy;
+      const scale = Math.min(width, height) * 0.42;
+
+      const projected = baseVertices.map((v) => {
+        const rotated = rotate(v.map((c) => c * radius), rotX, rotY);
+        return project(rotated, scale);
+      });
+
+      // Edges - depth-based opacity for a subtle 3D feel
+      ctx.lineWidth = 1.25 + hoverEnergy * 0.75;
+      ctx.lineJoin = 'round';
+      sphereEdges.forEach(([a, b]) => {
+        const depth = (projected[a][2] + projected[b][2]) / 2;
+        const alpha = 0.35 + (depth - 0.7) * 1.4;
+        ctx.strokeStyle = `rgba(${EDGE_COLOR}, ${Math.max(0.15, Math.min(1, alpha))})`;
+        ctx.beginPath();
+        ctx.moveTo(projected[a][0], projected[a][1]);
+        ctx.lineTo(projected[b][0], projected[b][1]);
+        ctx.stroke();
+      });
+
+      // Vertices
+      projected.forEach(([x, y, depth]) => {
+        const alpha = 0.4 + (depth - 0.7) * 1.4;
+        ctx.fillStyle = `rgba(${VERTEX_COLOR}, ${Math.max(0.25, Math.min(1, alpha))})`;
+        ctx.beginPath();
+        ctx.arc(x, y, 2.5 + hoverEnergy * 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+    }
+
+    function drawBubbles() {
+      if (!ctx) return;
+
+      for (let i = bubbles.length - 1; i >= 0; i--) {
+        const b = bubbles[i];
+        b.x += b.vx;
+        b.y += b.vy;
+        b.vy += 0.015; // gentle gravity drift
+        b.life -= 1;
+
+        const lifeRatio = b.life / b.maxLife;
+        if (lifeRatio <= 0) {
+          bubbles.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.radius * lifeRatio, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${b.color}, ${0.18 * lifeRatio})`;
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = `rgba(${b.color}, ${0.6 * lifeRatio})`;
+        ctx.stroke();
+      }
+    }
+
+    function draw() {
+      if (!ctx) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      drawGrid();
+      drawSphere();
+      drawBubbles();
+    }
+
+    function animate() {
+      time += 0.016;
+
+      if (autoRotate) {
+        targetRotY += autoRotateSpeed * (1 + hoverEnergy * 1.5);
+      }
+
+      // Decay hover energy back towards 0 when the pointer leaves
+      const energyTarget = pointerX !== null ? 1 : 0;
+      hoverEnergy += (energyTarget - hoverEnergy) * 0.08;
+
+      rotX += (targetRotX - rotX) * 0.06;
+      rotY += (targetRotY - rotY) * 0.06;
+
+      draw();
+      animationFrame = requestAnimationFrame(animate);
+    }
+
+    function handlePointerMove(event: PointerEvent) {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      pointerX = x;
+      pointerY = y;
+
+      autoRotate = false;
+      const offsetX = x / rect.width - 0.5;
+      const offsetY = y / rect.height - 0.5;
+      targetRotY = offsetX * Math.PI * 0.6;
+      targetRotX = offsetY * Math.PI * 0.6;
+    }
+
+    function handlePointerLeave() {
+      autoRotate = true;
+      pointerX = null;
+      pointerY = null;
+      targetRotX = 0.35;
+    }
+
+    function spawnBubbles(originX: number, originY: number) {
+      const count = 7;
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+        const speed = 0.6 + Math.random() * 1.4;
+        bubbles.push({
+          x: originX,
+          y: originY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          radius: 4 + Math.random() * 10,
+          life: 50 + Math.random() * 30,
+          maxLife: 80,
+          color: i % 2 === 0 ? EDGE_COLOR : VERTEX_COLOR,
+        });
+      }
+    }
+
+    function handleClick(event: MouseEvent) {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const radius = Math.min(width, height) * 0.42;
+      const dist = Math.hypot(x - width / 2, y - height / 2);
+
+      if (dist <= radius * 1.15) {
+        spawnBubbles(x, y);
+        // brief pulse of energy on click
+        hoverEnergy = 1;
+      }
+    }
+
+    resize();
+    draw();
+
+    if (!prefersReducedMotion) {
+      animate();
+      canvas.addEventListener('pointermove', handlePointerMove);
+      canvas.addEventListener('pointerleave', handlePointerLeave);
+      canvas.addEventListener('click', handleClick);
+    }
+
+    window.addEventListener('resize', () => {
+      resize();
+      draw();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrame);
+      } else if (!prefersReducedMotion) {
+        animate();
+      }
+    });
+  }
+</script>
