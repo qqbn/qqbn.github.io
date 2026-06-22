@@ -252,6 +252,30 @@ const experience = [...allExperience].sort((a, b) => a.data.order - b.data.order
     padding-left: 1.1rem;
     color: var(--color-text-secondary);
     font-size: 0.95rem;
+    list-style: none;
+  }
+
+  .experience-item-description li {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .experience-item-description li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-pink));
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .experience-item-description {
+      padding-left: 0;
+    }
   }
 
   .stack-groups {

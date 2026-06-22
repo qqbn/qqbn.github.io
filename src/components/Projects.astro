@@ -132,7 +132,7 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
             <path d="M3 12h16" />
           </svg>
         </span>
-        Przesuń, aby zobaczyć więcej projektów
+        Swipe to see more projects
       </div>
     )}
   </div>
@@ -260,6 +260,7 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-block: 0.75rem;
+      touch-action: pan-x;
     }
 
     .projects-viewport::-webkit-scrollbar {
