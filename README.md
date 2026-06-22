@@ -1,4 +1,4 @@
-# Portfolio v3 — Jakub Kroc 🚀
+# My own portfolio page 🚀
 
 Personal portfolio site built with Astro. Light/dark theme, animated project slider, scroll-driven animations, and a contact section with clipboard copy support.
 
