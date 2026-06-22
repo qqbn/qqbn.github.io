@@ -2,7 +2,6 @@
 position: "Computer Science Engineer"
 place: "Lublin University of Technology"
 date: "October 2018 - February 2022"
-list:
-  - ""
+list: []
 order: 1
 ---
