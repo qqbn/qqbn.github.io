@@ -444,18 +444,20 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
     pointer-events: none;
   }
 
-  .project-card:hover {
-    border-color: var(--color-accent-cyan);
-    transform: translateY(-4px);
-  }
+  @media (hover: hover) {
+    .project-card:hover {
+      border-color: var(--color-accent-cyan);
+      transform: translateY(-4px);
+    }
 
-  .project-card:hover::before {
-    opacity: 1;
-    width: 4rem;
-  }
+    .project-card:hover::before {
+      opacity: 1;
+      width: 4rem;
+    }
 
-  .project-card:hover::after {
-    opacity: 1;
+    .project-card:hover::after {
+      opacity: 1;
+    }
   }
 
   .project-card-header {
