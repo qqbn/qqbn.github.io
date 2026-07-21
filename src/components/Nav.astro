@@ -6,6 +6,50 @@ const links = [
 ];
 ---
 
+<script>
+  const themeToggles = document.querySelectorAll('.theme-toggle');
+
+  themeToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  });
+
+  const floatNav = document.querySelector('.float-nav');
+  const navTrigger = document.getElementById('nav-trigger');
+  const navBackdrop = document.getElementById('nav-backdrop');
+  const navSheet = document.getElementById('mobile-nav-sheet');
+
+  if (floatNav && navTrigger && navBackdrop && navSheet) {
+    const setOpen = (open: boolean) => {
+      floatNav.classList.toggle('is-open', open);
+      navTrigger.setAttribute('aria-expanded', String(open));
+    };
+
+    navTrigger.addEventListener('click', () => {
+      setOpen(!floatNav.classList.contains('is-open'));
+    });
+
+    navBackdrop.addEventListener('click', () => setOpen(false));
+
+    navSheet.querySelectorAll('a, button').forEach((el) => {
+      el.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  }
+</script>
+
 <nav class="float-nav" aria-label="Nawigacja sekcji">
   <ul class="float-nav-list">
     {links.map((link, index) => (
@@ -406,47 +450,3 @@ const links = [
     }
   }
 </style>
-
-<script>
-  const themeToggles = document.querySelectorAll('.theme-toggle');
-
-  themeToggles.forEach((toggle) => {
-    toggle.addEventListener('click', () => {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-
-      if (isLight) {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  });
-
-  const floatNav = document.querySelector('.float-nav');
-  const navTrigger = document.getElementById('nav-trigger');
-  const navBackdrop = document.getElementById('nav-backdrop');
-  const navSheet = document.getElementById('mobile-nav-sheet');
-
-  if (floatNav && navTrigger && navBackdrop && navSheet) {
-    const setOpen = (open: boolean) => {
-      floatNav.classList.toggle('is-open', open);
-      navTrigger.setAttribute('aria-expanded', String(open));
-    };
-
-    navTrigger.addEventListener('click', () => {
-      setOpen(!floatNav.classList.contains('is-open'));
-    });
-
-    navBackdrop.addEventListener('click', () => setOpen(false));
-
-    navSheet.querySelectorAll('a, button').forEach((el) => {
-      el.addEventListener('click', () => setOpen(false));
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
-    });
-  }
-</script>
