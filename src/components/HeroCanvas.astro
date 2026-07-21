@@ -1,29 +1,6 @@
 ---
 ---
 
-<div class="hero-canvas-wrapper" aria-hidden="true">
-  <canvas id="hero-canvas"></canvas>
-</div>
-
-<style>
-  .hero-canvas-wrapper {
-    width: 100%;
-    height: 100%;
-    min-height: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  canvas {
-    width: 100%;
-    height: 100%;
-    max-width: 640px;
-    max-height: 640px;
-    cursor: pointer;
-  }
-</style>
-
 <script>
   // Wireframe sphere on a 2D canvas:
   // - rotates towards the cursor, auto-rotates when idle
@@ -326,3 +303,26 @@
     });
   }
 </script>
+
+<div class="hero-canvas-wrapper" aria-hidden="true">
+  <canvas id="hero-canvas"></canvas>
+</div>
+
+<style>
+  .hero-canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    max-width: 640px;
+    max-height: 640px;
+    cursor: pointer;
+  }
+</style>

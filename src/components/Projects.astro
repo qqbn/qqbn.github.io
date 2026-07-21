@@ -14,6 +14,87 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
 }
 ---
 
+<script>
+  const track = document.getElementById('projects-track');
+  const viewport = document.getElementById('projects-viewport');
+  const prevBtn = document.getElementById('projects-prev') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('projects-next') as HTMLButtonElement | null;
+  const dots = document.querySelectorAll<HTMLButtonElement>('.projects-dot');
+
+  if (track) {
+    const pageCount = track.children.length;
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
+    let isMobile = mobileQuery.matches;
+    let currentPage = 0;
+    let wheelLocked = false;
+
+    function update() {
+      if (!track) return;
+
+      if (isMobile) {
+        track.style.transform = '';
+        return;
+      }
+
+      track.style.transform = `translateX(-${currentPage * 100}%)`;
+
+      if (prevBtn) prevBtn.disabled = currentPage === 0;
+      if (nextBtn) nextBtn.disabled = currentPage === pageCount - 1;
+
+      dots.forEach((dot, index) => {
+        const isActive = index === currentPage;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-selected', String(isActive));
+      });
+    }
+
+    function goTo(page: number) {
+      currentPage = Math.max(0, Math.min(pageCount - 1, page));
+      update();
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(currentPage - 1));
+    nextBtn?.addEventListener('click', () => goTo(currentPage + 1));
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goTo(index));
+    });
+
+    viewport?.addEventListener(
+      'wheel',
+      (event) => {
+        if (isMobile || pageCount <= 1) return;
+
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+        if (Math.abs(event.deltaX) < 10) return;
+
+        const next = event.deltaX > 0 ? currentPage + 1 : currentPage - 1;
+        if (next === currentPage || next < 0 || next > pageCount - 1) return;
+
+        event.preventDefault();
+        if (wheelLocked) return;
+
+        wheelLocked = true;
+        goTo(next);
+        setTimeout(() => {
+          wheelLocked = false;
+        }, 600);
+      },
+      { passive: false }
+    );
+
+    update();
+
+    mobileQuery.addEventListener('change', (event) => {
+      isMobile = event.matches;
+      if (isMobile) {
+        track.style.transform = '';
+      }
+      update();
+    });
+  }
+</script>
+
 <section id="projects" class="section projects">
   <div class="container">
     <div class="projects-heading">
@@ -457,84 +538,3 @@ for (let i = 0; i < projects.length; i += PAGE_SIZE) {
     }
   }
 </style>
-
-<script>
-  const track = document.getElementById('projects-track');
-  const viewport = document.getElementById('projects-viewport');
-  const prevBtn = document.getElementById('projects-prev') as HTMLButtonElement | null;
-  const nextBtn = document.getElementById('projects-next') as HTMLButtonElement | null;
-  const dots = document.querySelectorAll<HTMLButtonElement>('.projects-dot');
-
-  if (track) {
-    const pageCount = track.children.length;
-    const mobileQuery = window.matchMedia('(max-width: 768px)');
-    let isMobile = mobileQuery.matches;
-    let currentPage = 0;
-    let wheelLocked = false;
-
-    function update() {
-      if (!track) return;
-
-      if (isMobile) {
-        track.style.transform = '';
-        return;
-      }
-
-      track.style.transform = `translateX(-${currentPage * 100}%)`;
-
-      if (prevBtn) prevBtn.disabled = currentPage === 0;
-      if (nextBtn) nextBtn.disabled = currentPage === pageCount - 1;
-
-      dots.forEach((dot, index) => {
-        const isActive = index === currentPage;
-        dot.classList.toggle('is-active', isActive);
-        dot.setAttribute('aria-selected', String(isActive));
-      });
-    }
-
-    function goTo(page: number) {
-      currentPage = Math.max(0, Math.min(pageCount - 1, page));
-      update();
-    }
-
-    prevBtn?.addEventListener('click', () => goTo(currentPage - 1));
-    nextBtn?.addEventListener('click', () => goTo(currentPage + 1));
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => goTo(index));
-    });
-
-    viewport?.addEventListener(
-      'wheel',
-      (event) => {
-        if (isMobile || pageCount <= 1) return;
-
-        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-        if (Math.abs(event.deltaX) < 10) return;
-
-        const next = event.deltaX > 0 ? currentPage + 1 : currentPage - 1;
-        if (next === currentPage || next < 0 || next > pageCount - 1) return;
-
-        event.preventDefault();
-        if (wheelLocked) return;
-
-        wheelLocked = true;
-        goTo(next);
-        setTimeout(() => {
-          wheelLocked = false;
-        }, 600);
-      },
-      { passive: false }
-    );
-
-    update();
-
-    mobileQuery.addEventListener('change', (event) => {
-      isMobile = event.matches;
-      if (isMobile) {
-        track.style.transform = '';
-      }
-      update();
-    });
-  }
-</script>
